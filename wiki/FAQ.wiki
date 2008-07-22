@@ -1,13 +1,14 @@
-#summary One-sentence summary of this page.
+#Troubleshooting
 
-= Introduction =
+= Sale order amount precision =
 
-Add your content here.
+If OpenERP displays order amount that seems to be trunked and differ slightly from Magento values, then you should increase the OpenERP discount field float precision inside the sale_order_line table. For instance, you can set it to the numeric(16, 4) instead of numeric(16, 2) with PGAdmin III. Warning, always make a database dump before altering it if you are running in production.
 
 
-= Details =
+= Tax after or before discount =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+
+= Store id =
+
+
+= You imported Magento sale orders referencing products that are not in the OpenERP catalog, what to do ? =
