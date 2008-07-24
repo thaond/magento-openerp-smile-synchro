@@ -1,0 +1,83 @@
+#labels Featured,Phase-Deploy
+#User manual for OpenERP/Magento Bridge
+
+Installation
+-------------
+
+To get started you need to install both :
+
+-the Magento Interface module on OpenERP, using the .zip file
+
+-the OpenERP module for magento using Magento Connect Utility 
+(code : Mage_OpenERP_Synchro )
+
+
+Configuration
+-------------
+
+You need to configure website, shop, category, and tax class
+
+-Website
+
+	On OpenERP, you need to configure a website Name & Url, the
+	magento_id must be set to one.
+	The URL must point a the base of your magento webiste.
+	
+-Shop
+
+	You must configure a shop with the magento_id set to one,
+	a pricelist and a warehouse must be defined for the shop.
+	
+-Category
+
+	You can synchronize Magento & OpenERP categories, by setting
+	the magento_id on OpenERP categories, corresponding to the Magento
+	categories Id.
+
+-Tax Class
+	
+	You can synchronize Taxes on the products : 
+	When you assign taxes, such as VAT, to a product on OpenERP, you can
+	also assign it a tax class id, on magento.
+	Then tax class can be applied on the products in magento,
+	
+	/!\ Warning
+	In Magento > Configuration > Sales > Sales > Tax Calculation
+	you must set :
+	Catalog prices include tax, to No
+	Apply Tax after Discount, to No
+
+
+Products synchronization
+------------------------
+
+	The "Products synchronization" wizard will import or/and update the
+	products of your OpenERP catalog to Magento Catalog.
+	You can't prevent a product to be exported by setting the "exportable"
+	field to False on a product (setted on True by default)
+
+
+
+Sale orders synchronization
+---------------------------
+
+-Import
+
+	the "import" wizard will import magento orders to OpenERP
+	it will also create a partner, with the customer information 
+	(if he is not already known) and save his adress
+	
+-Correct
+	
+	In the case you import a sale order with a product defined in magento
+	and not known by OpenERP, it will be uncomplete, the fied "has error" will take 
+	the value of 1.
+	You can still correct the order by registering the product in OpenERP
+	and set the magento id in OpenERP, same the one in Magento, then
+	the "correct" wizard will allow you to correct sale order. 
+
+-Update
+	
+	the "update" wizard will update the state of the order in magento
+	for the different states to draft from done.
+	
