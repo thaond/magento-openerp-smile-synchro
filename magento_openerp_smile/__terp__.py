@@ -1,5 +1,5 @@
 {
-    "name" : "Magento Interface",
+    "name" : "Magento Synchro Smile",
     "version" : "0.9 beta",
     "author" : "Smile",
     "category" : "Interfaces/CMS & eCommerce",
