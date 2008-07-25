@@ -5,6 +5,9 @@ You can ensure that your Magento extension is properly installed by browsing thi
 http://localhost/magento/app/code/community/Smile_OpenERP_Synchro/openerp-synchro.php?test=true
 Ensure your get a welcome message with no error before the message (there might be an error message after the welcome message but it doesn't matter).
 
+= Can't install the Magento extension from the extension repository =
+If you get an error in the Magento download manager, may be you should try to open the settings tab in the donwload manager and choose 'beta' instead of stable. Then try again.
+
 = OpenERP error log while synchronizing =
 junk after document element
 
