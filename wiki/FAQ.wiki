@@ -39,7 +39,16 @@ It looks like eaccelerator doesn't work with theZend php docBlock based reflecti
 On the contrary, the apc (easier to configure and just as fast) accelerator looks all right. When using eaccelerator, you might have issues with the XML/RPC signatures.
 
 
-= Store id =
+= Why not use the built'in Magento webservices? =
+We could use the native web services to update and create products and it would be nice to refactor that part of the connector to achieve it. Still, to import the sale orders back to OpenERPn, we couldn't rely on the native web services as they don't include the sale order lines in the sale order data for instance.
+Still, it would be better to refactor the connector to at least declare our web-services the Magento way so that we would at least benefit from the Magento ACl based security.
 
+= Security =
+The connector web services are currently exposed in a unprotected manner to the world. This is very important you prevent anyone to connect to the webservice page by tunning your server (probably Apache). Ideally ony the OpenERP server could connect to that page (same as the test page). Using Magento ACL based webservices would improve that situation a lot. Please don't hesitate to contribute such an improvement.
+the Magento webservices API guidelines have just been published here:
+http://www.magentocommerce.com/wiki/doc/webservices-api/custom-api
+
+= Store id =
+TODO
 
 = You imported Magento sale orders referencing products that are not in the OpenERP catalog, what to do ? =
