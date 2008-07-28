@@ -214,7 +214,7 @@ def _do_import(self, cr, uid, data, context):
                         'product_uom': get_product.uom_id.id,
                         'product_uom_qty': line['product_qty'],
                         'price_unit': line['product_price'],
-                        'discount' : float(100*line['product_discount_amount'])/(line['product_price']*line['product_qty']),
+                        'discount' : float(100*float(line['product_discount_amount']))/(float(line['product_price'])*line['product_qty']),
                         'tax_id' : [(6, 0, [x.id for x in get_product.taxes_id])] #See fields.py, many2many set method.
                 })
                 

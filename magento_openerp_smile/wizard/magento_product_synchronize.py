@@ -94,11 +94,11 @@ def _do_export(self, cr, uid, data, context):
         #===============================================================================
         
         try:
-            updated_magento_id = server.products_sync(webproduct)   
+            updated_magento_id = server.product_sync([webproduct])   
             
             # update Magento id in OpenERP or log error
             if updated_magento_id != 0 :
-                if product.magento_id == updated_magento_id:
+                if int(product.magento_id) == int(updated_magento_id):
                     prod_update += 1
                 else:
                     prod_new += 1

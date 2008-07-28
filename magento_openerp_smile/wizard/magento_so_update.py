@@ -79,12 +79,14 @@ def _do_update(self, cr, uid, data, context):
                 'magento_id': update_so.magento_id or int(0),
                 'status': update_so.state or int(0),
         }
-        updated_id=server.update_sale_order(web_so)
+        updated_id=server.update_sale_order([web_so])
     
-        if updated_id != so_id :
-            logger.notifyChannel("Magento SO update", netsvc.LOG_ERROR, "Sale Order ID %s wrong update !" % updated_id) 
+        if int(updated_id) != int(update_so.magento_id) :
+            logger.notifyChannel("Magento SO update", netsvc.LOG_ERROR, "Sale Order ID %s wrong update !" % updated_id)
+        else:
+            updated += 1
 
-    return {'corrected':updated,}
+    return {'updated':updated}
 
 
 #===============================================================================
