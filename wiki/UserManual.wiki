@@ -1,7 +1,7 @@
 #labels Featured,Phase-Deploy
 #User manual for OpenERP/Magento Bridge
 
-Installation
+= Installation =
 -------------
 
 To get started you need to install both :
@@ -14,35 +14,62 @@ To get started you need to install both :
 see video here: http://www.youtube.com/v/j70llBqhas4
 
 
-Configuration
+=  Configuration =
 -------------
+
+http://img61.imageshack.us/img61/8678/openerpscreenshot001sx5.jpg
+_magento interface_
 
 You need to configure website, shop, category, and tax class in OpenERP Client
 and Magento Back office.
 
--Website
+== _-Website_ ==
 
 	On OpenERP, you need to configure a website Name & Url, the
 	magento_id must be set to one.
 	The URL must point a the base of your Magento website.
-	
--Shop
+
+	http://img140.imageshack.us/img140/6471/openerpscreenshot002uk4.jpg
+
+== _-Shop_ ==
 
 	You must configure a shop with the magento_id set to one,
 	a price list and a warehouse must be defined for the shop.
-	
--Category
+
+	http://img77.imageshack.us/img77/6559/openerpscreenshot008ko5.jpg
+
+== _-Category_ ==
 
 	You can synchronize Magento & OpenERP categories, by setting
 	the Magento_id on OpenERP categories, corresponding to the Magento
-	categories Id.
+	categories Id. But it is not an easy task, since magento database is tricky
+        The easiest way is to find yours category ids with this SQL request
 
--Tax Class
+
+         SELECT 'entity_id'
+         FROM `catalog_category_entity_varchar`
+         WHERE `attribute_id` ='111'
+         AND `value` = 'Category name'
+
+        with 'Category name' equals to the exact name of the category you defined
+        in Magento
+
+
+== _Tax Class_ ==
 	
 	You can synchronize Taxes on the products : 
 	When you assign taxes, such as VAT, to a product on OpenERP, you can
 	also assign it a tax class id, on magento.
 	Then tax class can be applied on the products in magento.
+
+        http://img142.imageshack.us/img142/8789/openerpscreenshot007kz8.jpg
+
+	You can get the Tax class id, same way you get the categories, 
+        via SQL request: 
+
+        SELECT 'class_id'
+        FROM `tax_class`
+        WHERE 'class_name'='Tax Class name"
 	
 	/!\ Warning
 	In Magento > Configuration > Sales > Sales > Tax Calculation
@@ -50,13 +77,17 @@ and Magento Back office.
 	Catalog prices include tax, to No
 	Apply Tax after Discount, to No
 
-- Discount
+       http://img139.imageshack.us/img139/993/openerpscreenshot010um6.jpg
+
+== _-Discount_ ==
+
 	To ensure discount calculation you must change precision, In your database
 	(with for instance PGAdmin III) of the "discount" field, in the "sale_order" table
 	you can set it to the numeric(16, 4) instead of numeric(16, 2)
 
+        http://magento-openerp-smile-synchro.googlecode.com/files/magento_openerp_rounding.png        
 
-Products synchronization
+=Products synchronization=
 ------------------------
 
 	The "Products synchronization" wizard will import or/and update the
@@ -64,18 +95,18 @@ Products synchronization
 	You can't prevent a product to be exported by setting the "exportable"
 	field to False on a product (set on True by default).
 
+        http://img75.imageshack.us/img75/610/openerpscreenshot003jx3.jpg
 
-
-Sale orders synchronization
+=Sale orders synchronization=
 ---------------------------
 
--Import
-
+== _-Import_ ==
+ 
 	the "import" wizard will import magento orders to OpenERP
 	it will also create a partner, with the customer information 
 	(if he is not already known) and save his address.
 	
--Correct
+== _-Correct_ ==
 	
 	In the case you import a sale order with a product defined in Magento
 	and not known by OpenERP, it will be incomplete, the field "has error" will take 
@@ -84,8 +115,12 @@ Sale orders synchronization
 	and set the magento id in OpenERP, same the one in Magento, then
 	the "correct" wizard will allow you to correct sale order. 
 
--Update
+== _-Update_ ==
 	
 	the "update" wizard will update the state of the order in magento
 	for the different states to draft from done.
+
+http://img142.imageshack.us/img142/5421/screenmodulelz0.png
+
+http://img292.imageshack.us/img292/2512/openerpscreenshot005rq5.jpg
 	
