@@ -8,7 +8,7 @@ To get started you need to install both :
 
 -the Magento Interface module on OpenERP, using the .zip file
 
--the OpenERP module for magento using Magento Connect Utility 
+-the OpenERP module for Magento using Magento Connect Utility 
 (code : Mage_OpenERP_Synchro )
 
 see video here: http://www.youtube.com/v/j70llBqhas4
@@ -17,23 +17,24 @@ see video here: http://www.youtube.com/v/j70llBqhas4
 Configuration
 -------------
 
-You need to configure website, shop, category, and tax class
+You need to configure website, shop, category, and tax class in OpenERP Client
+and Magento Back office.
 
 -Website
 
 	On OpenERP, you need to configure a website Name & Url, the
 	magento_id must be set to one.
-	The URL must point a the base of your magento webiste.
+	The URL must point a the base of your Magento website.
 	
 -Shop
 
 	You must configure a shop with the magento_id set to one,
-	a pricelist and a warehouse must be defined for the shop.
+	a price list and a warehouse must be defined for the shop.
 	
 -Category
 
 	You can synchronize Magento & OpenERP categories, by setting
-	the magento_id on OpenERP categories, corresponding to the Magento
+	the Magento_id on OpenERP categories, corresponding to the Magento
 	categories Id.
 
 -Tax Class
@@ -41,13 +42,18 @@ You need to configure website, shop, category, and tax class
 	You can synchronize Taxes on the products : 
 	When you assign taxes, such as VAT, to a product on OpenERP, you can
 	also assign it a tax class id, on magento.
-	Then tax class can be applied on the products in magento,
+	Then tax class can be applied on the products in magento.
 	
 	/!\ Warning
 	In Magento > Configuration > Sales > Sales > Tax Calculation
 	you must set :
 	Catalog prices include tax, to No
 	Apply Tax after Discount, to No
+
+- Discount
+	To ensure discount calculation you must change precision, In your database
+	(with for instance PGAdmin III) of the "discount" field, in the "sale_order" table
+	you can set it to the numeric(16, 4) instead of numeric(16, 2)
 
 
 Products synchronization
@@ -56,7 +62,7 @@ Products synchronization
 	The "Products synchronization" wizard will import or/and update the
 	products of your OpenERP catalog to Magento Catalog.
 	You can't prevent a product to be exported by setting the "exportable"
-	field to False on a product (setted on True by default)
+	field to False on a product (set on True by default).
 
 
 
@@ -67,12 +73,12 @@ Sale orders synchronization
 
 	the "import" wizard will import magento orders to OpenERP
 	it will also create a partner, with the customer information 
-	(if he is not already known) and save his adress
+	(if he is not already known) and save his address.
 	
 -Correct
 	
-	In the case you import a sale order with a product defined in magento
-	and not known by OpenERP, it will be uncomplete, the fied "has error" will take 
+	In the case you import a sale order with a product defined in Magento
+	and not known by OpenERP, it will be incomplete, the field "has error" will take 
 	the value of 1.
 	You can still correct the order by registering the product in OpenERP
 	and set the magento id in OpenERP, same the one in Magento, then
