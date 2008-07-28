@@ -46,8 +46,6 @@ Please do not hestitate to provide feedback and contribute enhancements.</notes>
   <dir name="/">
    <dir name="Smile_OpenERP_Synchro">
     <file md5sum="eb7f7313edc26207d9fcc4dc78c8dcf3" name="openerp-synchro.php" role="magecommunity" />
-    <file md5sum="dee5c7889daa178bdbd99e06dad32ebc" name="xmlrpc.inc" role="magecommunity" />
-    <file md5sum="c1f314bf3599621d28de73c72e861e3e" name="xmlrpcs.inc" role="magecommunity" />
    </dir> <!-- //Smile_OpenERP_Synchro -->
   </dir> <!-- / -->
  </contents>
