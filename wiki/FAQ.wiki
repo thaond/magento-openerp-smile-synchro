@@ -1,36 +1,41 @@
-#Troubleshooting
-
-= Magento extension test URL =
-You can ensure that your Magento extension is properly installed by browsing this URL with your favorite browser:
-http://localhost/magento/app/code/community/Smile_OpenERP_Synchro/openerp-synchro.php?test=true
-Ensure your get a welcome message with no error before the message (there might be an error message after the welcome message but it doesn't matter).
+#summary Troubleshooting
 
 = Can't install the Magento extension from the extension repository =
 If you get an error in the Magento download manager, may be you should try to open the settings tab in the download manager and choose 'beta' instead of stable. Then try again.
+
+= Testing the Magento extension =
+You can ensure that your Magento extension is properly installed by browsing this URL with your favorite browser:
+http://localhost/magento/app/code/community/Smile_OpenERP_Synchro/openerp-synchro.php
+
+Ensure your get a welcome message with no error before the message (due to some bad interaction with Magento when testing that URL from the browser, you might need to clear your cookies before trying again).
 
 = OpenERP error log while synchronizing =
 junk after document element
 
 you should log the detailed error message, so change temporarily your xmlrpc.py library file, in     def _parse_response(self, file, sock): (close to line 1321),
 add a print response statement so you get:
-while 1:
+{{{while 1:
             if sock:
                 response = sock.recv(1024)
             else:
                 response = file.read(1024)
 		print response
+}}}
 
 Then stop and restart your OpenERP server, next time you get an error you might easily investigate on what is going wrong with the PHP response from Magento (you'll get the HTMK error message logged) in the OpenERP server log.
 
 
 = Sale order amount precision =
-
 If OpenERP displays order amount that seems to be trunked and differ slightly from Magento values, then you should increase the OpenERP discount field float precision inside the sale_order_line table. For instance, you can set it to the numeric(16, 4) instead of numeric(16, 2) with PGAdmin III. Warning, always make a database dump before altering it if you are running in production.
 
 http://magento-openerp-smile-synchro.googlecode.com/files/magento_openerp_rounding.png
 
 
 = Tax after or before discount =
+
+= eaccelerator =
+It looks like eaccelerator doesn't work with theZend php docBlock based reflection system.
+On the contrary, the apc (easier to configure and just as fast) accelerator looks all right. When using eaccelerator, you might have issues with the XML/RPC signatures.
 
 
 = Store id =
