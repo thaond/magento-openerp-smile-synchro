@@ -1,5 +1,5 @@
+#summary User manual for the OpenERP/Magento connector
 #labels Featured,Phase-Deploy
-#User manual for OpenERP/Magento Bridge
 
 = Installation =
 -------------
@@ -45,11 +45,12 @@ and Magento Back office.
 	categories Id. But it is not an easy task, since magento database is tricky
         The easiest way is to find yours category ids with this SQL request
 
-
+{{{
          SELECT 'entity_id'
          FROM `catalog_category_entity_varchar`
          WHERE `attribute_id` ='111'
          AND `value` = 'Category name'
+}}}
 
         with 'Category name' equals to the exact name of the category you defined
         in Magento
@@ -68,9 +69,11 @@ and Magento Back office.
 	You can get the Tax class id, same way you get the categories, 
         via SQL request: 
 
+{{{
         SELECT 'class_id'
         FROM `tax_class`
         WHERE 'class_name'='Tax Class name"
+}}}
 	
 	/!\ Warning
 	In Magento > Configuration > Sales > Sales > Tax Calculation
