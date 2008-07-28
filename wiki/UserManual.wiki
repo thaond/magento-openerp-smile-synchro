@@ -53,7 +53,8 @@ and Magento Back office.
 
         with 'Category name' equals to the exact name of the category you defined
         in Magento
-
+        
+        http://img137.imageshack.us/img137/7383/openerpscreenshot0111kq7.jpg
 
 == _Tax Class_ ==
 	
