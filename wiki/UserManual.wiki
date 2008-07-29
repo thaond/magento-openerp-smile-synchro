@@ -15,7 +15,7 @@ To get started you need to install both :
 = Ininitial Configuration =
 -------------
 
-http://img61.imageshack.us/img61/8678/openerpscreenshot001sx5.jpg
+http://img227.imageshack.us/img227/9757/openerpscreenshot001fg7.png
 _magento interface_
 
 You need to configure website, shop, category, and tax class in OpenERP Client
