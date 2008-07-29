@@ -1,4 +1,5 @@
 #summary Troubleshooting
+#labels Featured
 
 = Can't install the Magento extension from the extension repository =
 If you get an error in the Magento download manager, may be you should try to open the settings tab in the download manager and choose 'beta' instead of 'stable'. Then try again.
