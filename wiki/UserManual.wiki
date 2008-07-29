@@ -34,7 +34,7 @@ and Magento Back office.
 	You must configure a shop with the magento_id set to one,
 	a price list and a warehouse must be defined for the shop. Ideally in the future we will map each OpenERP shop to a Magento store.
 
-	http://img77.imageshack.us/img77/6559/openerpscreenshot008ko5.jpg
+	http://img68.imageshack.us/img68/3247/openerpscreenshot002ce6.png
 
 == _-Category_ ==
 
