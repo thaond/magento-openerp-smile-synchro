@@ -1,16 +1,16 @@
 #summary Troubleshooting
 
 = Can't install the Magento extension from the extension repository =
-If you get an error in the Magento download manager, may be you should try to open the settings tab in the download manager and choose 'beta' instead of stable. Then try again.
+If you get an error in the Magento download manager, may be you should try to open the settings tab in the download manager and choose 'beta' instead of 'stable'. Then try again.
 
 = Testing the Magento extension =
-You can ensure that your Magento extension is properly installed by browsing this URL with your favorite browser:
+You can ensure that your Magento extension is properly installed by browsing the following URL with your favorite browser:
 http://localhost/magento/app/code/community/Smile_OpenERP_Synchro/openerp-synchro.php
 
 Ensure your get a welcome message with no error before the message (due to some bad interaction with Magento when testing that URL from the browser, you might need to clear your cookies before trying again).
 
 = OpenERP error log while synchronizing =
-junk after document element
+if you get an error like {{{junk after document element}}}
 
 you should log the detailed error message, so change temporarily your xmlrpc.py library file, in     def _parse_response(self, file, sock): (close to line 1321),
 add a print response statement so you get:
@@ -23,7 +23,7 @@ while 1:
 		print response
 }}}
 
-Then stop and restart your OpenERP server, next time you get an error you might easily investigate on what is going wrong with the PHP response from Magento (you'll get the HTMK error message logged) in the OpenERP server log.
+Then stop and restart your OpenERP server, next time you get an error you might easily investigate on what is going wrong with the PHP response from Magento (you'll get the HTML error message logged) in the OpenERP server log.
 
 
 = Sale order amount precision =
@@ -34,17 +34,16 @@ http://magento-openerp-smile-synchro.googlecode.com/files/magento_openerp_roundi
 
 = Tax after or before discount =
 
-= eaccelerator =
-It looks like eaccelerator doesn't work with theZend php docBlock based reflection system.
-On the contrary, the apc (easier to configure and just as fast) accelerator looks all right. When using eaccelerator, you might have issues with the XML/RPC signatures.
+= e-accelerator =
+It looks like e-accelerator doesn't work with the Zend php docBlock based reflection system. On the contrary, the apc (easier to configure and just as fast) accelerator looks all right. When using e-accelerator, you might have issues with the XML/RPC signatures.
 
 
 = Why not use the built'in Magento webservices? =
-We could use the native web services to update and create products and it would be nice to refactor that part of the connector to achieve it. Still, to import the sale orders back to OpenERPn, we couldn't rely on the native web services as they don't include the sale order lines in the sale order data for instance.
-Still, it would be better to refactor the connector to at least declare our web-services the Magento way so that we would at least benefit from the Magento ACl based security.
+We could use the native web services to update and create products and it would be nice to re-factor that part of the connector to achieve it. Still, to import the sale orders back to OpenERPn, we couldn't rely on the native web services as they don't include the sale order lines in the sale order data for instance.
+Still, it would be better to re-factor the connector to at least declare our web-services the Magento way so that we would at least benefit from the Magento ACl based security.
 
 = Security =
-The connector web services are currently exposed in a unprotected manner to the world. This is very important you prevent anyone to connect to the webservice page by tunning your server (probably Apache). Ideally ony the OpenERP server could connect to that page (same as the test page). Using Magento ACL based webservices would improve that situation a lot. Please don't hesitate to contribute such an improvement.
+*The connector web services are currently exposed in an unprotected manner to the world.* This is very important you prevent anyone from connecting to the webservice page ( http://localhost/magento/app/code/community/Smile_OpenERP_Synchro/openerp-synchro.php ) by tunning your server (probably Apache). Ideally only the OpenERP server could connect to that page (same as the test page). Using Magento ACL based webservices would improve that situation a lot. Please don't hesitate to contribute such an improvement.
 the Magento webservices API guidelines have just been published here:
 http://www.magentocommerce.com/wiki/doc/webservices-api/custom-api
 
@@ -52,3 +51,4 @@ http://www.magentocommerce.com/wiki/doc/webservices-api/custom-api
 TODO
 
 = You imported Magento sale orders referencing products that are not in the OpenERP catalog, what to do ? =
+You'll have to create the missing products in OpenERP manually. You can find out what are those missing products by looking at the OpenERP logs when a sale order import error occurs. For each of those missing OpenERP products, you'll manually set the corresponding magento_id in the OpenERP product form. Once you did this, you can click on the 'correct sale orders' wizard in OpenERP.
