@@ -62,7 +62,7 @@ and Magento Back office.
 	also assign it a tax class id, on magento.
 	Then tax class can be applied on the products in magento.
 
-        http://img65.imageshack.us/my.php?image=openerpscreenshot003vr5.png
+        http://img65.imageshack.us/img65/5547/openerpscreenshot003vr5.png
 
 	You can get the Tax class id, same way you get the categories, 
         via SQL request: 
