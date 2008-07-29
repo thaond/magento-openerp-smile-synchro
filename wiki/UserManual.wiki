@@ -5,13 +5,11 @@
 -------------
 
 To get started you need to install both :
+  *the connector module on OpenERP. Use the OpenERP module manager to load the zip file you'll find [here http://code.google.com/p/magento-openerp-smile-synchro/downloads/list]
+  *the connector extension for Magento you'll install using Magento Connect Utility. The extension key is to be found on [here on the Magento Connect repository http://www.magentocommerce.com/extension/446/smile-openerp-synchro]. See installation video here: http://www.youtube.com/v/j70llBqhas4
 
--the Magento Interface module on OpenERP, using the .zip file
+(Both plugins are actually bundled in the OpenERP module you can download [here http://code.google.com/p/magento-openerp-smile-synchro/downloads/list]. Both module are also on [SCM here http://code.google.com/p/magento-openerp-smile-synchro/source/checkout].
 
--the OpenERP module for Magento using Magento Connect Utility 
-(code : Mage_OpenERP_Synchro )
-
-see video here: http://www.youtube.com/v/j70llBqhas4
 
 
 =  Configuration =
