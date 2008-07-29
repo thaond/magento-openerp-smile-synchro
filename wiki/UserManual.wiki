@@ -79,7 +79,7 @@ and Magento Back office.
 	Catalog prices include tax, to No
 	Apply Tax after Discount, to No
 
-       http://img139.imageshack.us/img139/993/openerpscreenshot010um6.jpg
+       http://img67.imageshack.us/img67/5774/openerpscreenshot007hv1.png
 
 == _-Discount_ ==
 
