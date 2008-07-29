@@ -12,7 +12,7 @@ To get started you need to install both :
 
 
 
-=  Configuration =
+= Ininitial Configuration =
 -------------
 
 http://img61.imageshack.us/img61/8678/openerpscreenshot001sx5.jpg
@@ -32,7 +32,7 @@ and Magento Back office.
 == _-Shop_ ==
 
 	You must configure a shop with the magento_id set to one,
-	a price list and a warehouse must be defined for the shop.
+	a price list and a warehouse must be defined for the shop. Ideally in the future we will map each OpenERP shop to a Magento store.
 
 	http://img77.imageshack.us/img77/6559/openerpscreenshot008ko5.jpg
 
@@ -40,7 +40,7 @@ and Magento Back office.
 
 	You can synchronize Magento & OpenERP categories, by setting
 	the Magento_id on OpenERP categories, corresponding to the Magento
-	categories Id. But it is not an easy task, since magento database is tricky
+	categories id. But it is not an easy task, since magento database is tricky
         The easiest way is to find yours category ids with this SQL request
 
 {{{
@@ -51,7 +51,7 @@ and Magento Back office.
 }}}
 
         with 'Category name' equals to the exact name of the category you defined
-        in Magento
+        in Magento.
         
         http://img137.imageshack.us/img137/7383/openerpscreenshot0111kq7.jpg
 
