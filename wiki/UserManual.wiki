@@ -34,7 +34,7 @@ and Magento Back office.
 	You must configure a shop with the magento_id set to one,
 	a price list and a warehouse must be defined for the shop. Ideally in the future we will map each OpenERP shop to a Magento store.
 
-	http://img68.imageshack.us/img68/3247/openerpscreenshot002ce6.png
+	http://img66.imageshack.us/img66/9836/openerpscreenshot002xv4.png
 
 == _-Category_ ==
 
@@ -97,7 +97,7 @@ and Magento Back office.
 	You can't prevent a product to be exported by setting the "exportable"
 	field to False on a product (set on True by default).
 
-        http://img75.imageshack.us/img75/610/openerpscreenshot003jx3.jpg
+        http://img67.imageshack.us/img67/3578/openerpscreenshot004qe1.png
 
 =Sale orders synchronization=
 ---------------------------
@@ -122,7 +122,7 @@ and Magento Back office.
 	the "update" wizard will update the state of the order in magento
 	for the different states to draft from done.
 
-http://img142.imageshack.us/img142/5421/screenmodulelz0.png
+http://img66.imageshack.us/img66/9176/openerpscreenshot005nn8.png
 
-http://img292.imageshack.us/img292/2512/openerpscreenshot005rq5.jpg
+http://img227.imageshack.us/img227/3866/openerpscreenshot006vc9.png
 	
