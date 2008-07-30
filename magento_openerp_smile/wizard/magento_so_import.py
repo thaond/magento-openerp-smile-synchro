@@ -145,11 +145,17 @@ def _do_import(self, cr, uid, data, context):
             
             known_ba= False
             known_sa= False
+            
+            
+        if(type(partner_id)== list):
+            fixed_partner_id = partner_id[0]
+        else:
+            fixed_partner_id = partner_id
                     
         # if address doesn't exist, create it        
-        if (known_ba == False):   
+        if(known_ba == False):
             bill_adr_id = self.pool.get('res.partner.address').create(cr, uid, {
-            'partner_id': partner_id[0] if type(partner_id)== list else partner_id,
+            'partner_id': fixed_partner_id,
             'name': so['billing_address']['firstname']+" "+so['billing_address']['lastname'],
             'street': so['billing_address']['street'],
             'street2': so['billing_address']['street2'],
@@ -161,7 +167,7 @@ def _do_import(self, cr, uid, data, context):
         # if the address does'nt exist & isn't the same as billing, create it
         if((so['shipping_address'] == so['billing_address']) and known_sa == False):      
             ship_adr_id = self.pool.get('res.partner.address').create(cr, uid, {
-                'partner_id': partner_id[0] if type(partner_id)== list else partner_id,
+                'partner_id': fixed_partner_id,
                 'name': so['shipping_address']['firstname']+" "+so['shipping_address']['lastname'],
                 'street': so['shipping_address']['street'],
                 'street2': so['shipping_address']['street2'],
@@ -184,7 +190,7 @@ def _do_import(self, cr, uid, data, context):
         # creates Sale Order
         order_id=self.pool.get('sale.order').create(cr, uid, {
                 'name': 'magento SO/'+str(so['id']),
-                'partner_id': partner_id[0] if type(partner_id)== list else partner_id,
+                'partner_id': fixed_partner_id,
                 'partner_shipping_id': ship_adr_id,
                 'partner_invoice_id': bill_adr_id,
                 'partner_order_id': bill_adr_id,
@@ -238,7 +244,7 @@ def _do_import(self, cr, uid, data, context):
         })
         
         # done fields counter   
-        if line_error : 
+        if line_error :
             has_error += 1
         
         so_nb += 1
