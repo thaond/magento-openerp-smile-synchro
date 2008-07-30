@@ -86,6 +86,8 @@ def _do_export(self, cr, uid, data, context):
             'description' : product.description or 'Auto description',
             'sale_description' : product.description_sale or 'Auto short description',
             'tax_class_id': product.magento_tax_class_id or 0,
+            'magento_product_type': product.categ_id.magento_product_type or 0,
+            'magento_product_attribute_set_id': product.categ_id.magento_product_attribute_set_id or 0,
         }
         
         

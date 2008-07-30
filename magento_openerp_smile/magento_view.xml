@@ -6,7 +6,7 @@
 	
 		<!-- Product View -->
 		<record model="ir.ui.view" id="product_normal_form_view">
-			<field name="name">producto.product.form.inherit
+			<field name="name">product.product.form.inherit
 			</field>
 			<field name="model">product.product</field>
 			<field name="inherit_id" ref="product.product_normal_form_view" />
@@ -18,8 +18,7 @@
 						<newline />
 						<field name="magento_id" position="inside" colspan="4" />
 						<field name="exportable" position="inside" colspan="4" />
-						<field name="magento_tax_class_id" position="inside"
-							colspan="4" />
+						<field name="magento_tax_class_id" position="inside" colspan="4" />			
 					</page>
 				</page>
 			</field>
@@ -50,6 +49,8 @@
 					<separator string="Magento Information" colspan="4"
 						position="after" />
 					<field name="magento_id" position="after" />
+					<field name="magento_product_type" position="inside" colspan="4" />
+					<field name="magento_product_attribute_set_id" position="inside" colspan="4" />
 				</form>
 			</field>
 		</record>

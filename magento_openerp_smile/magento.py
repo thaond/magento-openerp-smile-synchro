@@ -39,7 +39,7 @@ class product_product(osv.osv):
     _columns = {
         'magento_id'        : fields.integer('Magento product id'),
         'exportable'        : fields.boolean('Export to website'), 
-        'magento_tax_class_id'    : fields.integer('Magento tax class Id'),
+        'magento_tax_class_id'  : fields.integer('Magento tax class Id'),
     }
     _defaults = {
          'exportable':lambda *a: True,
@@ -71,7 +71,9 @@ class product_category(osv.osv):
     _inherit = 'product.category'
     _columns = {
         'magento_id'        : fields.integer('magento category id'),
-        'magento_name'      : fields.char('Magento Category Name', size=64), 
+        'magento_name'      : fields.char('Magento Category Name', size=64),
+        'magento_product_type'  : fields.integer('Magento Product Type'), 
+        'magento_product_attribute_set_id'  : fields.integer('Magento Product Attribute Set Id'), 
     }
 product_category()
 

@@ -204,7 +204,8 @@
 			$openerp_product = $openerp_product[0];
 			$product = Mage::getModel('catalog/product');
 			
-			if ($openerp_product['magento_id'] != 0) { // then it's an update, no need to create a new resource
+			if ($openerp_product['magento_id'] != 0) { 
+				// then it's an update, no need to create a new resource
 				$product = Mage::getModel('catalog/product')->load($openerp_product['magento_id']);
 			}
 			
@@ -216,6 +217,7 @@
 			
 			//$product->setStoreId(?);  //TODO put some id here ?
 			//TODO only if Mage::app()->isSingleStoreMode()
+		
 			
 			//	product attributes
 			$product->setName($openerp_product['name']);
@@ -225,10 +227,22 @@
 			$product->setDescription($openerp_product['description']);
 			$product->setShortDescription($openerp_product['sale_description']);
 			
-			//	Required for Magento
-			$product->setEntity_type_id(10); 
-			$product->setAttribute_set_id(9);
-			$product->setCustomer_group_id(1);
+			//Attribute
+			if($openerp_product['magento_product_attribute_set_id']==0){
+				$entityType = Mage::registry('product')->getResource()->getEntityType();
+				$product->setAttribute_set_id($entityType->getDefaultAttributeSetId());
+			} else{
+				$product->setEntity_type_id($openerp_product['magento_product_attribute_set_id']);
+			}
+			 
+
+			//Type
+			if($openerp_product['magento_product_type']==0){
+				$product->setTypeId(Mage_Catalog_Model_Product_Type::TYPE_SIMPLE);
+			} else{
+				$product->setTypeId($openerp_product['magento_product_type']);
+			}
+			
 			$product->setStatus(Mage_Catalog_Model_Product_Status::STATUS_ENABLED);
 			$product->setVisibility(Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH);
 			$product->setGiftMessageAvailable(2);
@@ -241,9 +255,11 @@
 			$product->setTaxClassId($openerp_product['tax_class_id']);
 			
 			//	categories
-			$category [] = 3; //Setted by default in Root catalog
-			//if($openerp_product['category_id'] != 0){$category [] = $openerp_product['category_id'];}
-			//$product->setCategoryIds($category);
+			$category [] = 1; //Setted by default in Root catalog
+			if($openerp_product['category_id'] != 0){$category [] = $openerp_product['category_id'];}
+			$product->setCategoryIds($category);
+			
+			
 			
 			$inventory = array(
 				"qty"=> $openerp_product['quantity'],
@@ -258,18 +274,19 @@
 
 			$product->setStockData($inventory);
 		
+			
 			try {
 				$product->save();
 				$productId = $product->getId();
 
 			} catch (Mage_Core_Exception $e) {
 				$productId=0;
-				echo e;
+				echo $e;
 				debug($e);
 			}
 			catch (Exception $e) {
 				$productId=0;
-				echo e;
+				echo $e;
 				debug($e);
 			}
 			
