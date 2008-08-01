@@ -320,7 +320,7 @@
 //script when page loads, either from XML/RPC, either browser HTTP
 $headers = getallheaders();
 //echo stripos($headers['Accept'], 'text');
-if (array_key_exists('Accept', $headers) && $headers['Accept']) {
+if (isset($headers['Accept'])) {
 	$request_type = stripos($headers['Accept'], 'text');
 	if ($request_type >=0) {
 		browserTestMessage() ;
