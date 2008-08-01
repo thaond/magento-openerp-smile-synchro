@@ -46,8 +46,7 @@ and Magento Back office.
 {{{
          SELECT 'entity_id'
          FROM `catalog_category_entity_varchar`
-         WHERE `attribute_id` ='111'
-         AND `value` = 'Category name'
+         WHERE `value` = 'Category name'
 }}}
 
         with 'Category name' equals to the exact name of the category you defined
@@ -87,7 +86,16 @@ and Magento Back office.
 	(with for instance PGAdmin III) of the "discount" field, in the "sale_order" table
 	you can set it to the numeric(16, 4) instead of numeric(16, 2)
 
-        http://magento-openerp-smile-synchro.googlecode.com/files/magento_openerp_rounding.png        
+        http://magento-openerp-smile-synchro.googlecode.com/files/magento_openerp_rounding.png
+
+== _-Type and Attribute_ ==
+
+        You can synchronize attribute and type on products view
+        If not they will take default value.
+        
+        To retrieve the attribute and type id in magento you'll
+        have to use SQL request
+
 
 =Products synchronization=
 ------------------------
