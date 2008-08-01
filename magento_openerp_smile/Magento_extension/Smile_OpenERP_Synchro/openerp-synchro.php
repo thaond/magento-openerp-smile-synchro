@@ -201,6 +201,7 @@
 		* @return int product_id
 		*/
 		function product_sync($openerp_product){
+			
 			$openerp_product = $openerp_product[0];
 			$product = Mage::getModel('catalog/product');
 			
@@ -209,24 +210,15 @@
 				$product = Mage::getModel('catalog/product')->load($openerp_product['magento_id']);
 			}
 			
-			$product->setStoreId(0);
-			$product->setWebsiteIds(array(Mage::app()->getStore(true)->getId()));
+			
 			
 			Mage::register('product', $product); 
 			Mage::register('current_product', $product);
 			
-			//$product->setStoreId(?);  //TODO put some id here ?
-			//TODO only if Mage::app()->isSingleStoreMode()
-		
-			
-			//	product attributes
-			$product->setName($openerp_product['name']);
-			$product->setSku("mag".$openerp_product['product_id']);
-			$product->setPrice($openerp_product['price']);
-			$product->setWeight($openerp_product['weight']);
-			$product->setDescription($openerp_product['description']);
-			$product->setShortDescription($openerp_product['sale_description']);
-			
+			/*
+			* Attirbute And Type parameters can be setted on OpenERP, if not, take default value
+			* These parameters have to be synchronised manually
+			*/
 			//Attribute
 			if($openerp_product['magento_product_attribute_set_id']==0){
 				$entityType = Mage::registry('product')->getResource()->getEntityType();
@@ -234,7 +226,6 @@
 			} else{
 				$product->setEntity_type_id($openerp_product['magento_product_attribute_set_id']);
 			}
-			 
 
 			//Type
 			if($openerp_product['magento_product_type']==0){
@@ -243,24 +234,34 @@
 				$product->setTypeId($openerp_product['magento_product_type']);
 			}
 			
-			$product->setStatus(Mage_Catalog_Model_Product_Status::STATUS_ENABLED);
-			$product->setVisibility(Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH);
-			$product->setGiftMessageAvailable(2);
+			/*
+			*This parameters are untreated in OpenERP for the moment, 
+			* Still this version handle evolution of openERP by checking sended values
+			* and set default value if not.
+			*/
+			if(!(isset($openerp_product['store_id']))){
+				$product->setStoreId(0);}
+			//-Status
+			if(!(isset($openerp_product['product_data']['status']))){
+				$openerp_product['product_data']['status']=Mage_Catalog_Model_Product_Status::STATUS_ENABLED;}
+			//-Visibility
+			if(!(isset($openerp_product['product_data']['visibility']))){
+				$openerp_product['product_data']['visibility']=Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH;}
+			//-Store
+			if(!(isset($openerp_product['product_data']['websites']))){
+				$product->setWebsiteIds(array(Mage::app()->getStore(true)->getId()));}
+			
+
+			//Copying the data coming from OpenERP
+			$openerp_product['gift_message_available']=2;
+			$product->addData($openerp_product['product_data']);
+			
+			//Misc settings
 			$product->setThumbnail('no_selection');
 			$product->setSmallImage('no_selection');
 			$product->setImage('no_selection');
-			
-			// tax classes
-			if($openerp_product['tax_class_id'] == 0){$openerp_product['tax_class_id']=1;}
-			$product->setTaxClassId($openerp_product['tax_class_id']);
-			
-			//	categories
-			$category [] = 1; //Setted by default in Root catalog
-			if($openerp_product['category_id'] != 0){$category [] = $openerp_product['category_id'];}
-			$product->setCategoryIds($category);
-			
-			
-			
+		
+			//Inventory conf
 			$inventory = array(
 				"qty"=> $openerp_product['quantity'],
 				"use_config_min_qty" => 1, 
@@ -274,26 +275,30 @@
 
 			$product->setStockData($inventory);
 		
-			
+			/*
+			* Try to save and return the magento Id of the product
+			* Logging the errors in the debug log
+			*/
 			try {
 				$product->save();
 				$productId = $product->getId();
 
 			} catch (Mage_Core_Exception $e) {
 				$productId=0;
-				echo $e;
+				//echo $e;
+				debug("Mage says:");
 				debug($e);
 			}
 			catch (Exception $e) {
 				$productId=0;
-				echo $e;
+				//echo $e;
+				debug("php says:");
 				debug($e);
 			}
 			
 			return $productId;
 		}
-		
-		
+			
 	}
 	
 

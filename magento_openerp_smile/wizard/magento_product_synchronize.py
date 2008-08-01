@@ -31,6 +31,8 @@ import wizard
 import pooler
 import xmlrpclib
 import netsvc
+from xml.parsers.expat import ExpatError
+
 
 #===============================================================================
 #    Information Form & Fields
@@ -74,20 +76,31 @@ def _do_export(self, cr, uid, data, context):
     #===============================================================================
     for product in pool.get('product.product').browse(cr, uid, prod_ids, context=context):
     
+        category_tab =[1]
+        tax_class_id = 1
+        if(product.categ_id.magento_id != 0):
+            category_tab.append(product.categ_id.magento_id)
+            
+        if(product.magento_tax_class_id != 0):
+            tax_class_id=product.magento_tax_class_id
+            
+         
         webproduct={
             'magento_id': product.magento_id or int(0),
-            'product_id': product.id or int(0),
-            'name': product.name or '',
-            'quantity': product.virtual_available or int(0),
-            'price' : product.list_price or float(0.0), 
-            'weight': product.weight_net or float(0.0), 
-            'category_id': product.categ_id.magento_id or int(0), 
-            'category_name': product.categ_id.magento_name or '',
-            'description' : product.description or 'Auto description',
-            'sale_description' : product.description_sale or 'Auto short description',
-            'tax_class_id': product.magento_tax_class_id or 0,
             'magento_product_type': product.categ_id.magento_product_type or 0,
             'magento_product_attribute_set_id': product.categ_id.magento_product_attribute_set_id or 0,
+            'quantity': product.virtual_available or int(0),
+               
+            'product_data': {
+                'sku': 'mag'+str(product.id) or int(0),
+                'name': product.name or '',
+                'price' : product.list_price or float(0.0), 
+                'weight': product.weight_net or float(0.0), 
+                'category_ids': category_tab, #fix product.categ_id.magento_id or int(0), 
+                'description' : product.description or 'Auto description',
+                'short_description' : product.description_sale or 'Auto short description',
+                'tax_class_id': tax_class_id or 0,
+                 }
         }
         
         
@@ -107,8 +120,8 @@ def _do_export(self, cr, uid, data, context):
                 pool.get('product.product').write(cr, uid, product.id, {'magento_id': updated_magento_id})
             else:
                 logger.notifyChannel("Magento Export", netsvc.LOG_ERROR, "product ID %s unknown !" % webproduct['product_id'])  
-        except:
-            logger.notifyChannel("Magento Export", netsvc.LOG_ERROR, "product ID %s has error !" % webproduct['product_id']) 
+        except ExpatError, error:
+            logger.notifyChannel("Magento Export", netsvc.LOG_ERROR, "product ID %s has error ! \nError %s" %(product.id, error))
         
 
     return {'prod_new':prod_new, 'prod_update':prod_update}
