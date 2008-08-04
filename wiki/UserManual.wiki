@@ -76,9 +76,9 @@ and Magento Back office.
 	In Magento > Configuration > Sales > Sales > Tax Calculation
 	you must set :
 	Catalog prices include tax, to No
-	Apply Tax after Discount, to No
+	Apply Tax after Discount, to Yes
 
-       http://img67.imageshack.us/img67/5774/openerpscreenshot007hv1.png
+       http://img80.imageshack.us/img80/5977/openerpscreenshot001yu2.png
 
 == _-Discount_ ==
 
