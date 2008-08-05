@@ -12,7 +12,7 @@ To get started you need to install both :
 
 
 
-= Ininitial Configuration =
+= Initial Configuration =
 -------------
 
 http://img68.imageshack.us/img68/6877/openerpscreenshot001ko9.png
