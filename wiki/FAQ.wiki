@@ -34,6 +34,8 @@ http://magento-openerp-smile-synchro.googlecode.com/files/magento_openerp_roundi
 
 
 = Tax after or before discount =
+The connector has only been successfully tested with taxes applied AFTER discounts. I think this is the default in OpenERP and I don't know how one should proceed if doing the contrary (but I'm pretty sure this can be achieved using some OpenERP module). On the contrary, It's clear that Magento is able to deal with any of the two options, so then one could alter our connector a little bit to make it work correctly with OpenERP if what you want is taxes being applied before discount. Please [http://groups.google.com/group/magento-openerp let us know here] if you attempt such a thing.
+
 
 = e-accelerator =
 It looks like e-accelerator doesn't work with the Zend php docBlock based reflection system. On the contrary, the apc (easier to configure and just as fast) accelerator looks all right. When using e-accelerator, you might have issues with the XML/RPC signatures.
@@ -49,7 +51,7 @@ the Magento webservices API guidelines have just been published here:
 http://www.magentocommerce.com/wiki/doc/webservices-api/custom-api
 
 = Store id =
-TODO
+Currently mono Magento store is trivial to get working. Still, this should be possible to use multiple Magento store ids. Notice that in Magento you state what is the root category of every store. This way, if you you can decide which products will be available in which store by simply assigning them the proper category. Still, some improvements could certainly be made so don't hesitate to make usggestion on the [http://groups.google.com/group/magento-openerp Google feedback group].
 
 = You imported Magento sale orders referencing products that are not in the OpenERP catalog, what to do ? =
 You'll have to create the missing products in OpenERP manually. You can find out what are those missing products by looking at the OpenERP logs when a sale order import error occurs. For each of those missing OpenERP products, you'll manually set the corresponding magento_id in the OpenERP product form. Once you did this, you can click on the 'correct sale orders' wizard in OpenERP.
