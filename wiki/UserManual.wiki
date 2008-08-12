@@ -86,7 +86,7 @@ and Magento Back office.
 	(with for instance PGAdmin III) of the "discount" field, in the "sale_order" table
 	you can set it to the numeric(16, 4) instead of numeric(16, 2)
 
-        http://magento-openerp-smile-synchro.googlecode.com/files/magento_openerp_rounding.png
+        http://img112.imageshack.us/img112/7955/magentoopenerproundingmh4.png
 
 == _-Type and Attribute_ ==
 
