@@ -25,7 +25,7 @@ and Magento Back office.
 
 	On OpenERP, you need to configure a website Name & Url, the
 	magento_id must be set to one.
-	The URL must point a the base of your Magento website *usually this means http://localhost/magento* unlike the screenshot (we will change that soon).
+	The URL must point a the base of your Magento website; usually this means http://localhost/magento unlike the screenshot (we will change that soon).
 
 	http://img140.imageshack.us/img140/6471/openerpscreenshot002uk4.jpg
 
