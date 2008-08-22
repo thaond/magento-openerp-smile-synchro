@@ -39,15 +39,15 @@ from xml.parsers.expat import ExpatError
 #===============================================================================
 
 _export_done_form = '''<?xml version="1.0"?>
-<form string="Product and Stock Synchronization">
-    <separator string="Products exported" colspan="4" />
-    <field name="prod_new"/>
-    <field name="prod_update"/>
+<form string="Categories Synchronization">
+    <separator string="Categories exported" colspan="4" />
+    <field name="categ_new"/>
+    <field name="categ_update"/>
 </form>'''
 
 _export_done_fields = {
-    'prod_new': {'string':'New products', 'readonly': True, 'type':'integer'},
-    'prod_update': {'string':'Updated products', 'readonly': True, 'type':'integer'},
+    'categ_new': {'string':'New Categories', 'readonly': True, 'type':'integer'},
+    'categ_update': {'string':'Updated Categories', 'readonly': True, 'type':'integer'},
 }
 
 
@@ -56,12 +56,10 @@ def _do_export(self, cr, uid, data, context):
     #===============================================================================
     #  Init
     #===============================================================================
-
-    prod_new = 0
-    prod_update = 0
+    categ_new = 0
+    categ_update = 0
     logger = netsvc.Logger()
     pool = pooler.get_pool(cr.dbname)
-    prod_ids = pool.get('product.product').search(cr, uid, [('exportable','=',True)]) #NB uid is the user id to enforce the rights accesses
     
     # Server communication
     magento_web_id=pool.get('magento.web').search(cr,uid,[('magento_id','=',1)])
@@ -74,62 +72,59 @@ def _do_export(self, cr, uid, data, context):
     #===============================================================================
     #  Product packaging
     #===============================================================================
-    for product in pool.get('product.product').browse(cr, uid, prod_ids, context=context):
+    categ_ids = pool.get('product.category').search(cr, uid, [('exportable','=',True)]) #NB uid is the user id to enforce the rights accesses
+    for category in pool.get('product.category').browse(cr, uid, categ_ids, context=context):
     
-        category_tab ={'0':1}
-        key=1
-        tax_class_id = 1
-        last_category = product.categ_id
-        while(type(last_category.parent_id.id) == (int)):
-            category_tab[str(key)]=last_category.magento_id
-            last_category=pool.get('product.category').browse(cr, uid, last_category.parent_id.id)
-            key=key+1
-
+        
+        path=''             #construct path
+        magento_parent_id=1 #root catalog
+        
+        
+        if(type(category.parent_id.id)== (int)): #if not root category
             
-        if(product.magento_tax_class_id != 0):
-            tax_class_id=product.magento_tax_class_id
+            last_parent=pool.get('product.category').browse(cr, uid, category.parent_id.id)
+            magento_parent_id=last_parent.magento_id
+            path= str(last_parent.magento_id)
             
-         
-        webproduct={
-            'magento_id': product.magento_id or int(0),
-            'magento_product_type': product.categ_id.magento_product_type or 0,
-            'magento_product_attribute_set_id': product.categ_id.magento_product_attribute_set_id or 0,
-            'quantity': product.virtual_available or int(0),
-               
-            'product_data': {
-                'sku': 'mag'+str(product.id) or int(0),
-                'name': product.name or '',
-                'price' : product.list_price or float(0.0), 
-                'weight': product.weight_net or float(0.0), 
-                'category_ids': category_tab, #fix product.categ_id.magento_id or int(0), 
-                'description' : product.description or 'Auto description',
-                'short_description' : product.description_sale or 'Auto short description',
-                'tax_class_id': tax_class_id or 0,
-                 }
+            while(type(last_parent.parent_id.id) == (int)):
+                
+                last_parent=pool.get('product.category').browse(cr, uid, last_parent.parent_id.id)
+                path=str(last_parent.magento_id)+'/'+path
+                
+        path='1/'+path
+        path=path.replace("//","/")
+        if path.endswith('/'): 
+            path=path[0:-1]
+        
+        webcategory={
+            'magento_id': category.magento_id or 0,
+            'parent_id': magento_parent_id,
+            'name': category.name,
+            'path': path,
         }
-        
-        
+         
         #===============================================================================
         #  Product upload to Magento
         #===============================================================================
+        #print webcategory
         
         try:
-            updated_magento_id = server.product_sync([webproduct])   
+            category_id = server.category_sync([webcategory])   
             
             # update Magento id in OpenERP or log error
-            if updated_magento_id != 0 :
-                if int(product.magento_id) == int(updated_magento_id):
-                    prod_update += 1
+            if category_id != 0 :
+                if int(category.magento_id) == int(category_id):
+                    categ_update += 1
                 else:
-                    prod_new += 1
-                pool.get('product.product').write(cr, uid, product.id, {'magento_id': updated_magento_id})
+                    categ_new += 1
+                pool.get('product.category').write(cr, uid, category.id, {'magento_id': category_id})
             else:
-                logger.notifyChannel("Magento Export", netsvc.LOG_ERROR, "product ID %s unknown !" % webproduct['product_id'])  
+                logger.notifyChannel("Magento Export", netsvc.LOG_ERROR, "category ID %s unknown !" % webcategory['product_id'])  
         except ExpatError, error:
-            logger.notifyChannel("Magento Export", netsvc.LOG_ERROR, "product ID %s has error ! \nError %s" %(product.id, error))
+            logger.notifyChannel("Magento Export", netsvc.LOG_ERROR, "category ID %s has error ! \nError %s" %(category.id, error))
         
 
-    return {'prod_new':prod_new, 'prod_update':prod_update}
+    return {'categ_new':categ_new, 'categ_update':categ_update }
 
 
 
@@ -137,11 +132,11 @@ def _do_export(self, cr, uid, data, context):
 #   Wizard Declaration
 #===============================================================================
 
-class wiz_magento_product_synchronize(wizard.interface):
+class wiz_magento_category_synchronize(wizard.interface):
     states = {
         'init': {
             'actions': [_do_export],
             'result': {'type': 'form', 'arch': _export_done_form, 'fields': _export_done_fields, 'state': [('end', 'End')] }
         }
     }
-wiz_magento_product_synchronize('magento.products.sync');
+wiz_magento_category_synchronize('magento.categories.sync');

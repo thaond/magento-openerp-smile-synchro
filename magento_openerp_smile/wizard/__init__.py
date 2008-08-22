@@ -2,3 +2,4 @@ import magento_product_synchronize
 import magento_so_import
 import magento_so_correct
 import magento_so_update
+import magento_category_synchronize

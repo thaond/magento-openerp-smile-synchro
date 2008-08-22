@@ -31,5 +31,13 @@
 			name="Sales Management/Magento/Synchronization/Update sale orders"
 			action="wizard_magento_saleorders_update" type="wizard"
 			id="menu_magento_saleorders_update" />
+		
+		<!-- Synchronize Categories -->
+		<wizard string="Synchronize Categories" model="product.category"
+			name="magento.categories.sync" id="wizard_magento_categories" />
+		<menuitem
+			name="Sales Management/Magento/Synchronization/Synchronize Categories"
+			action="wizard_magento_categories" type="wizard" id="menu_magento_categories" />	
+		
 	</data>
 </terp>
