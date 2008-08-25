@@ -5,7 +5,7 @@
 	
 		
 		
-0.9.5 - Aug 1, 2008
+0.9.5 - Aug 1, 2008 - 70 downloads
 	enhancements:
 		Synch product taxes and product categories ids when exporting products
 		Deal with visibility status and store id
@@ -14,7 +14,7 @@
 
 		
 		
-0.9.4 - Jul 28, 2008
+0.9.4 - Jul 28, 2008 - 17 downloads
 	enhancements:
 		"No need to depend on Python 2.5" - http://code.google.com/p/magento-openerp-smile-synchro/issues/detail?id=5&can=1
 	bug fixes:
@@ -22,6 +22,6 @@
 
 		
 		
-0.9.3 - Jul 28, 2008 - First public release
+0.9.3 - Jul 25, 2008 - 14 downloads - First public release!
 	enhancements:
 		"Change the webservice PHP server implémentation to use the Magento infrastructure or the the Pear XML/RPC library" - http://code.google.com/p/magento-openerp-smile-synchro/issues/detail?id=3&can=1
