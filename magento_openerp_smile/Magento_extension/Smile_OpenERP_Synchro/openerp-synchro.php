@@ -304,7 +304,7 @@
 
 	/** Debug utility function ; use it to log data if you want to investigate on what is going wrong */
 	function debug($s) {
-		$fp = fopen("./debug.xmlrpc.txt","a+");
+		$fp = fopen("./debug.xmlrpc.log","a+");
 		fwrite($fp, $s."\n");
 		fclose($fp);
 	}

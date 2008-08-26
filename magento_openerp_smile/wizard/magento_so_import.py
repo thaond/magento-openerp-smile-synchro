@@ -93,7 +93,7 @@ def _do_import(self, cr, uid, data, context):
     try:
         sale_order_array=server.sale_orders_sync(last_order_id)
     except:
-        logger.notifyChannel("Magento Import", netsvc.LOG_ERROR, "Error occured during Sales Orders Sync")
+        logger.notifyChannel("Magento Import", netsvc.LOG_ERROR, "Error occured during Sales Orders Sync, See your debug.xmlrpc.log in the Smile_OpenERP_Synch folder in your Apache!\nError %s" % error)
     
     
     # order Processing

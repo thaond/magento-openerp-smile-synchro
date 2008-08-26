@@ -119,9 +119,9 @@ def _do_export(self, cr, uid, data, context):
                     categ_new += 1
                 pool.get('product.category').write(cr, uid, category.id, {'magento_id': category_id})
             else:
-                logger.notifyChannel("Magento Export", netsvc.LOG_ERROR, "category ID %s unknown !" % webcategory['product_id'])  
+                logger.notifyChannel("Magento Export", netsvc.LOG_ERROR, "Magento couldn't create or update the category ID %s , see your debug.xmlrpc.log in the Smile_OpenERP_Synch folder in your Apache!" % category.id)  
         except ExpatError, error:
-            logger.notifyChannel("Magento Export", netsvc.LOG_ERROR, "category ID %s has error ! \nError %s" %(category.id, error))
+            logger.notifyChannel("Magento Export", netsvc.LOG_ERROR, "Category ID %s has error ! See your debug.xmlrpc.log in the Smile_OpenERP_Synch folder in your Apache! \nError %s" %(category.id, error))
         
 
     return {'categ_new':categ_new, 'categ_update':categ_update }

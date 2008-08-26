@@ -124,9 +124,9 @@ def _do_export(self, cr, uid, data, context):
                     prod_new += 1
                 pool.get('product.product').write(cr, uid, product.id, {'magento_id': updated_magento_id})
             else:
-                logger.notifyChannel("Magento Export", netsvc.LOG_ERROR, "product ID %s unknown !" % webproduct['product_id'])  
+                logger.notifyChannel("Magento Export", netsvc.LOG_ERROR, "Magento couldn't create or update the product ID %s , see your debug.xmlrpc.log in the Smile_OpenERP_Synch folder in your Apache!" % product.id)  
         except ExpatError, error:
-            logger.notifyChannel("Magento Export", netsvc.LOG_ERROR, "product ID %s has error ! \nError %s" %(product.id, error))
+            logger.notifyChannel("Magento Export", netsvc.LOG_ERROR, "Product ID %s has error ! See your debug.xmlrpc.log in the Smile_OpenERP_Synch folder in your Apache! \nError %s" %(product.id, error))
         
 
     return {'prod_new':prod_new, 'prod_update':prod_update}
