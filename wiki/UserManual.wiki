@@ -5,10 +5,10 @@
 -------------
 
 To get started you need to install both :
-  *the connector module on OpenERP. Use the OpenERP module manager to load the zip file you'll find [http://code.google.com/p/magento-openerp-smile-synchro/downloads/list here]
-  *the connector extension for Magento you'll install using Magento Connect Utility. The extension key is to be found on [http://www.magentocommerce.com/extension/446/smile-openerp-synchro here on the Magento Connect repository ]. See installation video in flash, in the download section.
+  * The connector module for OpenERP. Use the OpenERP module manager to load the zip file you'll find [http://code.google.com/p/magento-openerp-smile-synchro/downloads/list here]
+  * The connector extension for Magento you'll install using Magento Connect Utility. The extension key is to be found on [http://www.magentocommerce.com/extension/446/smile-openerp-synchro here in the Magento Connect repository ]. See installation video in flash, in the [http://code.google.com/p/magento-openerp-smile-synchro/downloads/list download section].
 
-(Both plugins are actually bundled in the OpenERP module you can download [http://code.google.com/p/magento-openerp-smile-synchro/downloads/list here]. Both module are also on [http://code.google.com/p/magento-openerp-smile-synchro/source/checkout SCM here ].
+(Both plugins are actually bundled in the OpenERP module you can download [http://code.google.com/p/magento-openerp-smile-synchro/downloads/list here]. Both modules are also on [http://code.google.com/p/magento-openerp-smile-synchro/source/checkout SCM here ].
 
 
 
@@ -18,14 +18,14 @@ To get started you need to install both :
 http://img68.imageshack.us/img68/6877/openerpscreenshot001ko9.png
 _magento interface_
 
-You need to configure website, shop, category, and tax class in OpenERP Client
+You need to configure the website, shop, category, and tax class in OpenERP Client
 and Magento Back office.
 
 == _-Website_ ==
 
 	On OpenERP, you need to configure a website Name & Url, the
 	magento_id must be set to one.
-	The URL must point a the base of your Magento website; usually this means http://localhost/magento unlike the screenshot (we will change that soon).
+	The URL must point a the base of your Magento website; usually this means http://localhost/magento/ unlike the screenshot (we will change that soon). The trailing slash is currently mandatory.
 
 	http://img140.imageshack.us/img140/6471/openerpscreenshot002uk4.jpg
 
@@ -40,8 +40,8 @@ and Magento Back office.
 
 	You can synchronize Magento & OpenERP categories, by setting
 	the Magento_id on OpenERP categories, corresponding to the Magento
-	categories id. But it is not an easy task, since magento database is tricky
-        The easiest way is to find yours category ids with this SQL request
+	categories id. But it is not an easy task, since the Magento database is tricky
+        the easiest way is to find yours category ids with this SQL request
 
 {{{
          SELECT 'entity_id'
@@ -57,13 +57,13 @@ and Magento Back office.
 == _Tax Class_ ==
 	
 	You can synchronize Taxes on the products : 
-	When you assign taxes, such as VAT, to a product on OpenERP, you can
-	also assign it a tax class id, on magento.
-	Then tax class can be applied on the products in magento.
+	When you assign taxes, such as VAT, to a product in OpenERP, you can
+	also assign it a tax class id in Magento.
+	Then tax class can be applied on the products in Magento.
 
         http://img65.imageshack.us/img65/5547/openerpscreenshot003vr5.png
 
-	You can get the Tax class id, same way you get the categories, 
+	You can get the Tax class id, the same way you get the categories, 
         via SQL request: 
 
 {{{
@@ -73,16 +73,18 @@ and Magento Back office.
 }}}
 	
 	/!\ Warning
-	In Magento > Configuration > Sales > Sales > Tax Calculation
+	In Magento > System > Configuration > Sales  > Tax > Calculation
 	you must set :
-	Catalog prices include tax, to No
-	Apply Tax after Discount, to Yes
+	
+        _Catalog prices include tax_, to *No*
+
+	_Apply Tax after Discount_, to *Yes*
 
        http://img80.imageshack.us/img80/5977/openerpscreenshot001yu2.png
 
 == _-Discount_ ==
 
-	To ensure discount calculation you must change precision, In your database
+	To ensure discount calculation you must change the precision in your database
 	(with for instance PGAdmin III) of the "discount" field, in the "sale_order" table
 	you can set it to the numeric(16, 4) instead of numeric(16, 2)
 
@@ -90,19 +92,23 @@ and Magento Back office.
 
 == _-Type and Attribute_ ==
 
-        You can synchronize attribute and type on products view
+        You can synchronize the attribute and type in the products view
         If not they will take default value.
         
-        To retrieve the attribute and type id in magento you'll
-        have to use SQL request
+        To retrieve the attribute and type id in Magento you'll
+        have to use a SQL request
 
 
-=Products synchronization=
+=Category synchronization=
+------------------------
+Coming soon...
+
+=Product synchronization=
 ------------------------
 
 	The "Products synchronization" wizard will import or/and update the
 	products of your OpenERP catalog to Magento Catalog.
-	You can't prevent a product to be exported by setting the "exportable"
+	You can prevent a product to be exported by setting the "exportable"
 	field to False on a product (set on True by default).
 
         http://img67.imageshack.us/img67/3578/openerpscreenshot004qe1.png
@@ -112,8 +118,8 @@ and Magento Back office.
 
 == _-Import_ ==
  
-	the "import" wizard will import magento orders to OpenERP
-	it will also create a partner, with the customer information 
+	The "import" wizard will import Magento orders to OpenERP
+	it will also create a partner with the customer information 
 	(if he is not already known) and save his address.
 	
 == _-Correct_ ==
@@ -122,15 +128,14 @@ and Magento Back office.
 	and not known by OpenERP, it will be incomplete, the field "has error" will take 
 	the value of 1.
 	You can still correct the order by registering the product in OpenERP
-	and set the magento id in OpenERP, same the one in Magento, then
+	and set the Magento id in OpenERP, to the same as the one in Magento, then
 	the "correct" wizard will allow you to correct sale order. 
 
 == _-Update_ ==
 	
-	the "update" wizard will update the state of the order in magento
+	the "update" wizard will update the state of the order in Magento
 	for the different states to draft from done.
 
 http://img66.imageshack.us/img66/9176/openerpscreenshot005nn8.png
 
 http://img227.imageshack.us/img227/3866/openerpscreenshot006vc9.png
-	
