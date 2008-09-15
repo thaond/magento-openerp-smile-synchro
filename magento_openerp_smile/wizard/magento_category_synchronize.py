@@ -31,7 +31,7 @@ import wizard
 import pooler
 import xmlrpclib
 import netsvc
-from xml.parsers.expat import ExpatError
+
 
 
 #===============================================================================
@@ -65,21 +65,23 @@ def _do_export(self, cr, uid, data, context):
     magento_web_id=pool.get('magento.web').search(cr,uid,[('magento_id','=',1)])
     try:
         magento_web=pool.get('magento.web').browse(cr,uid,magento_web_id[0])
-        server = xmlrpclib.ServerProxy("%sapp/code/community/Smile_OpenERP_Synchro/openerp-synchro.php" % magento_web.magento_url)# % website.url)
+        server = xmlrpclib.ServerProxy("%sindex.php/api/xmlrpc" % magento_web.magento_url)   
     except:
-        raise wizard.except_wizard("UserError", "You must have a declared website with a valid URL! provided URL: %s/openerp-synchro.php" % magento_web.magento_url)
+        raise wizard.except_wizard("UserError", "You must have a declared website with a valid URL, a Magento username and password")
+    try:
+        session=server.login(magento_web.api_user, magento_web.api_pwd)
+    except xmlrpclib.Fault,error:
+        raise wizard.except_wizard("MagentoError", "Magento returned %s" % error)
+
     
     #===============================================================================
-    #  Product packaging
+    #  Category packaging
     #===============================================================================
     categ_ids = pool.get('product.category').search(cr, uid, [('exportable','=',True)]) #NB uid is the user id to enforce the rights accesses
     for category in pool.get('product.category').browse(cr, uid, categ_ids, context=context):
     
-        
         path=''             #construct path
         magento_parent_id=1 #root catalog
-        
-        
         if(type(category.parent_id.id)== (int)): #if not root category
             
             last_parent=pool.get('product.category').browse(cr, uid, category.parent_id.id)
@@ -96,33 +98,32 @@ def _do_export(self, cr, uid, data, context):
         if path.endswith('/'): 
             path=path[0:-1]
         
-        webcategory={
-            'magento_id': category.magento_id or 0,
-            'parent_id': magento_parent_id,
-            'name': category.name,
-            'path': path,
+        category_data={
+                'name' : category.name,
+                'path' : path,
+                'is_active' : 1,
         }
-         
+        
         #===============================================================================
-        #  Product upload to Magento
+        #  Category upload to Magento
         #===============================================================================
-        #print webcategory
         
         try:
-            category_id = server.category_sync([webcategory])   
-            
-            # update Magento id in OpenERP or log error
-            if category_id != 0 :
-                if int(category.magento_id) == int(category_id):
-                    categ_update += 1
-                else:
-                    categ_new += 1
-                pool.get('product.category').write(cr, uid, category.id, {'magento_id': category_id})
+            if(category.magento_id == 0):
+                new_id=server.call(session,'category.create',[magento_parent_id,category_data])
+                pool.get('product.category').write(cr, uid, category.id, {'magento_id': new_id})
+                categ_new += 1
+                
             else:
-                logger.notifyChannel("Magento Export", netsvc.LOG_ERROR, "Magento couldn't create or update the category ID %s , see your debug.xmlrpc.log in the Smile_OpenERP_Synch folder in your Apache!" % category.id)  
-        except ExpatError, error:
-            logger.notifyChannel("Magento Export", netsvc.LOG_ERROR, "Category ID %s has error ! See your debug.xmlrpc.log in the Smile_OpenERP_Synch folder in your Apache! \nError %s" %(category.id, error))
-        
+                category_data['path']=category_data['path']+"/"+category.magento_id
+                server.call(session,'category.update',[category.magento_id,category_data])
+                categ_update += 1
+            
+                
+        except xmlrpclib.Fault,error:
+            logger.notifyChannel("Magento Export", netsvc.LOG_ERROR, "Magento API return an error on category id %s . Error %s" % [category.id,error])   
+
+        server.endSession(session)        
 
     return {'categ_new':categ_new, 'categ_update':categ_update }
 

@@ -31,7 +31,7 @@ import wizard
 import pooler
 import xmlrpclib
 import netsvc
-from xml.parsers.expat import ExpatError
+
 
 
 #===============================================================================
@@ -67,71 +67,78 @@ def _do_export(self, cr, uid, data, context):
     magento_web_id=pool.get('magento.web').search(cr,uid,[('magento_id','=',1)])
     try:
         magento_web=pool.get('magento.web').browse(cr,uid,magento_web_id[0])
-        server = xmlrpclib.ServerProxy("%sapp/code/community/Smile_OpenERP_Synchro/openerp-synchro.php" % magento_web.magento_url)# % website.url)
+        server = xmlrpclib.ServerProxy("%sindex.php/api/xmlrpc" % magento_web.magento_url)   
     except:
-        raise wizard.except_wizard("UserError", "You must have a declared website with a valid URL! provided URL: %s/openerp-synchro.php" % magento_web.magento_url)
-    
+        raise wizard.except_wizard("UserError", "You must have a declared website with a valid URL, a Magento username and password")
+    try:
+        session=server.login(magento_web.api_user, magento_web.api_pwd)
+    except xmlrpclib.Fault,error:
+        raise wizard.except_wizard("MagentoError", "Magento returned %s" % error)
+        
     #===============================================================================
     #  Product packaging
     #===============================================================================
     for product in pool.get('product.product').browse(cr, uid, prod_ids, context=context):
     
+        #Getting Magento categories
         category_tab ={'0':1}
         key=1
-        tax_class_id = 1
         last_category = product.categ_id
         while(type(last_category.parent_id.id) == (int)):
             category_tab[str(key)]=last_category.magento_id
             last_category=pool.get('product.category').browse(cr, uid, last_category.parent_id.id)
             key=key+1
 
-            
+        #Getting tax class
+        tax_class_id = 1    
         if(product.magento_tax_class_id != 0):
             tax_class_id=product.magento_tax_class_id
-            
-         
-        webproduct={
-            'magento_id': product.magento_id or int(0),
-            'magento_product_type': product.categ_id.magento_product_type or 0,
-            'magento_product_attribute_set_id': product.categ_id.magento_product_attribute_set_id or 0,
-            'quantity': product.virtual_available or int(0),
-               
-            'product_data': {
-                'sku': 'mag'+str(product.id) or int(0),
-                'name': product.name or '',
-                'price' : product.list_price or float(0.0), 
-                'weight': product.weight_net or float(0.0), 
-                'category_ids': category_tab, #fix product.categ_id.magento_id or int(0), 
-                'description' : product.description or 'Auto description',
-                'short_description' : product.description_sale or 'Auto short description',
-                'tax_class_id': tax_class_id or 0,
-                 }
+        
+        #Getting the set attribute    
+        sets = server.call(session, 'product_attribute_set.list')
+        for set in sets:
+            if set['name']=='Default':
+                attr_set_id=set['set_id'] 
+        
+        #product Data        
+        sku='mag'+str(product.id)  
+        product_data={
+            'name': product.name,
+            'price' : product.list_price, 
+            'weight': product.weight_net, 
+            'category_ids': category_tab, #fix product.categ_id.magento_id ), 
+            'description' : product.description,
+            'short_description' : product.description_sale,
+            'websites':['base'],
+            'tax_class_id': tax_class_id,
+            'status': 1,
         }
         
+        stock_data={
+            'qty': 10, #product.virtual_available,
+            'is_in_stock':1,#product.virtual_available,
+        }
         
         #===============================================================================
         #  Product upload to Magento
         #===============================================================================
-        
         try:
-            updated_magento_id = server.product_sync([webproduct])   
-            
-            # update Magento id in OpenERP or log error
-            if updated_magento_id != 0 :
-                if int(product.magento_id) == int(updated_magento_id):
-                    prod_update += 1
-                else:
-                    prod_new += 1
-                pool.get('product.product').write(cr, uid, product.id, {'magento_id': updated_magento_id})
+            if(product.magento_id == 0):
+                new_id=server.call(session, 'product.create', ['simple',attr_set_id, sku, product_data])
+                pool.get('product.product').write(cr, uid, product.id, {'magento_id': new_id})
+                server.call(session,'product_stock.update',[sku,stock_data])
+                prod_new += 1
             else:
-                logger.notifyChannel("Magento Export", netsvc.LOG_ERROR, "Magento couldn't create or update the product ID %s , see your debug.xmlrpc.log in the Smile_OpenERP_Synch folder in your Apache!" % product.id)  
-        except ExpatError, error:
-            logger.notifyChannel("Magento Export", netsvc.LOG_ERROR, "Product ID %s has error ! See your debug.xmlrpc.log in the Smile_OpenERP_Synch folder in your Apache! \nError %s" %(product.id, error))
-        
-
+                server.call(session, 'product.update',[sku,product_data])
+                server.call(session,'product_stock.update',[sku,stock_data])
+                prod_update += 1
+            
+            server.endSession(session)
+                
+        except xmlrpclib.Fault,error:
+            logger.notifyChannel("Magento Export", netsvc.LOG_ERROR, "Magento API return an error on product id %s . Error %s" % [product.id,error])   
+                
     return {'prod_new':prod_new, 'prod_update':prod_update}
-
-
 
 #===============================================================================
 #   Wizard Declaration

@@ -96,7 +96,9 @@ class magento_web(osv.osv):
     _columns = {
         'magento_id'        : fields.integer('magento web id'),
         'magento_name'      : fields.char('Magento Web Name', size=64),
-        'magento_url'      : fields.char('Magento Url', size=64), 
+        'magento_url'       : fields.char('Magento Url', size=64), 
+        'api_user'          : fields.char('Magento Api User', size=64),
+        'api_pwd'           : fields.char('Magento Api Password', size=64),
     }
     
     def _constraint_unique(self, cr, uid, ids):
