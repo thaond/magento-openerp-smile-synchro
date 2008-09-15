@@ -1,3 +1,13 @@
+0.9.7 - Sep 15, 2008
+	enhancements:
+		added API fields on Magento interface
+		use of Magento API on products and categories exports
+	bug fixes:
+		multi-store handle for products and categories export
+		bug fixed in sale order import wizard
+	
+
+
 0.9.6 - Aug 25, 2008
 	enhancements:
 		added one click category export from OpenERP to Magento.
