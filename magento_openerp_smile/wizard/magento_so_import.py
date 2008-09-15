@@ -91,12 +91,12 @@ def _do_import(self, cr, uid, data, context):
     else:
         last_order_id = 0
     
+    sale_order_array=[]
     # attempt to retrieve the sale order
     try:
         sale_order_array=server.sale_orders_sync(last_order_id)
     except ExpatError, error:
         logger.notifyChannel("Magento Import", netsvc.LOG_ERROR, "Error occured during Sales Orders Sync, See your debug.xmlrpc.log in the Smile_OpenERP_Synch folder in your Apache!\nError %s" % error)
-    
     
     # order Processing
     for so in sale_order_array:
@@ -184,7 +184,7 @@ def _do_import(self, cr, uid, data, context):
         
         # retrieves Magento Shop in OpenERP
         shop_id=self.pool.get('sale.shop').search(cr, uid, [('magento_id', '>', 0)])
-        if shop_id and len(shop_id) == 1:
+        if shop_id and len(shop_id) >= 1:
             shop=self.pool.get('sale.shop').browse(cr, uid, shop_id[0])
         else:
             raise wizard.except_wizard('UserError', 'You must have one shop with magento_id set to 1')

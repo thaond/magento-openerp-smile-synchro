@@ -71,6 +71,7 @@ def _do_correct(self, cr, uid, data, context):
     #===============================================================================
     
     # retrieves sale orders with errors
+    has_error_so_array=[]
     has_error_so_array=self.pool.get('sale.order').search(cr, uid,[('has_error','=',1)])
     
     # sale orders processing

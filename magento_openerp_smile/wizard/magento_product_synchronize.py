@@ -69,7 +69,8 @@ def _do_export(self, cr, uid, data, context):
         magento_web=pool.get('magento.web').browse(cr,uid,magento_web_id[0])
         server = xmlrpclib.ServerProxy("%sindex.php/api/xmlrpc" % magento_web.magento_url)   
     except:
-        raise wizard.except_wizard("UserError", "You must have a declared website with a valid URL, a Magento username and password")
+        raise wizard.except_wizard("UserError", "You must have a declared website with a valid URL; using %sindex.php/api/xmlrpc" % magento_web.magento_url)
+    
     try:
         session=server.login(magento_web.api_user, magento_web.api_pwd)
     except xmlrpclib.Fault,error:
@@ -94,7 +95,8 @@ def _do_export(self, cr, uid, data, context):
         if(product.magento_tax_class_id != 0):
             tax_class_id=product.magento_tax_class_id
         
-        #Getting the set attribute    
+        #Getting the set attribute  
+        #TODO: customize this code in order to pass custom attribute sets (configurable products)  
         sets = server.call(session, 'product_attribute_set.list')
         for set in sets:
             if set['name']=='Default':
@@ -132,12 +134,11 @@ def _do_export(self, cr, uid, data, context):
                 server.call(session, 'product.update',[sku,product_data])
                 server.call(session,'product_stock.update',[sku,stock_data])
                 prod_update += 1
-            
-            server.endSession(session)
-                
+                 
         except xmlrpclib.Fault,error:
-            logger.notifyChannel("Magento Export", netsvc.LOG_ERROR, "Magento API return an error on product id %s . Error %s" % [product.id,error])   
-                
+            logger.notifyChannel("Magento Export", netsvc.LOG_ERROR, "Magento API return an error on product id %s . Error %s" % (product.id,error))   
+    
+    server.endSession(session)            
     return {'prod_new':prod_new, 'prod_update':prod_update}
 
 #===============================================================================

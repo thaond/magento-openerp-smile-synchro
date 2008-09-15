@@ -1,14 +1,16 @@
 0.9.7 - Sep 15, 2008
 	enhancements:
-		added API fields on Magento interface
-		use of Magento API on products and categories exports
+		added webservices login API fields on Magento interface
+		use native Magento API for products and categories exports (drop lot of PHP code)
+		partial implementation of:
+		"use native Magento ACL based security for the PHP webservices" http://code.google.com/p/magento-openerp-smile-synchro/issues/detail?id=6
 	bug fixes:
-		multi-store handle for products and categories export
-		bug fixed in sale order import wizard
+		multi-store products and categories export: "product synchronization fails (in multi-stores environment specifically)" http://code.google.com/p/magento-openerp-smile-synchro/issues/detail?id=7
+		bug fixed in sale order import wizard (there was an error while printing a stack trace)
 	
 
 
-0.9.6 - Aug 25, 2008
+0.9.6 - Aug 25, 2008 - 96 downloads
 	enhancements:
 		added one click category export from OpenERP to Magento.
 		added flag on OpenERP categories to state if they are exportable or not

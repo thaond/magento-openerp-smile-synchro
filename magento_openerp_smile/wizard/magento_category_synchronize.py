@@ -67,7 +67,8 @@ def _do_export(self, cr, uid, data, context):
         magento_web=pool.get('magento.web').browse(cr,uid,magento_web_id[0])
         server = xmlrpclib.ServerProxy("%sindex.php/api/xmlrpc" % magento_web.magento_url)   
     except:
-        raise wizard.except_wizard("UserError", "You must have a declared website with a valid URL, a Magento username and password")
+        raise wizard.except_wizard("UserError", "You must have a declared website with a valid URL; using %sindex.php/api/xmlrpc" % magento_web.magento_url)
+    
     try:
         session=server.login(magento_web.api_user, magento_web.api_pwd)
     except xmlrpclib.Fault,error:
@@ -110,21 +111,21 @@ def _do_export(self, cr, uid, data, context):
         
         try:
             if(category.magento_id == 0):
-                new_id=server.call(session,'category.create',[magento_parent_id,category_data])
+                new_id=server.call(session,'category.create',[magento_parent_id, category_data])
                 pool.get('product.category').write(cr, uid, category.id, {'magento_id': new_id})
                 categ_new += 1
                 
             else:
-                category_data['path']=category_data['path']+"/"+category.magento_id
-                server.call(session,'category.update',[category.magento_id,category_data])
+                category_data['path']=category_data['path']+"/"+str(category.magento_id)
+                server.call(session,'category.update',[category.magento_id, category_data])
                 categ_update += 1
             
                 
         except xmlrpclib.Fault,error:
-            logger.notifyChannel("Magento Export", netsvc.LOG_ERROR, "Magento API return an error on category id %s . Error %s" % [category.id,error])   
+            logger.notifyChannel("Magento Export", netsvc.LOG_ERROR, "Magento API return an error on category id %s . Error %s" % (category.id,error))   
 
-        server.endSession(session)        
-
+    server.endSession(session)        
+    
     return {'categ_new':categ_new, 'categ_update':categ_update }
 
 
