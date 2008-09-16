@@ -29,6 +29,10 @@ and Magento Back office.
 
 	http://img140.imageshack.us/img140/6471/openerpscreenshot002uk4.jpg
 
+        Since 0.9.7
+        You now have to configure API username and password
+        That you have to create on Magento backoffice
+
 == _-Shop_ ==
 
 	You must configure a shop with the magento_id set to one,
@@ -38,21 +42,7 @@ and Magento Back office.
 
 == _-Category_ ==
 
-	You can synchronize Magento & OpenERP categories, by setting
-	the Magento_id on OpenERP categories, corresponding to the Magento
-	categories id. But it is not an easy task, since the Magento database is tricky
-        the easiest way is to find yours category ids with this SQL request
-
-{{{
-         SELECT 'entity_id'
-         FROM `catalog_category_entity_varchar`
-         WHERE `value` = 'Category name'
-}}}
-
-        with 'Category name' equals to the exact name of the category you defined
-        in Magento.
-        
-        http://img137.imageshack.us/img137/7383/openerpscreenshot0111kq7.jpg
+	Categories are now automatically exported !
 
 == _Tax Class_ ==
 	
@@ -92,23 +82,18 @@ and Magento Back office.
 
 == _-Type and Attribute_ ==
 
-        You can synchronize the attribute and type in the products view
-        If not they will take default value.
+        Type and Attibute are now automatically setted to the default
+        values.
         
-        To retrieve the attribute and type id in Magento you'll
-        have to use a SQL request
 
 
-=Category synchronization=
-------------------------
-Coming soon...
+=Category and Products synchronization=
+---------------------------------------
 
-=Product synchronization=
-------------------------
+	The "Categories" and "Product" wizards will import or/and update the
+	categories and products of your OpenERP catalog to Magento Catalog.
 
-	The "Products synchronization" wizard will import or/and update the
-	products of your OpenERP catalog to Magento Catalog.
-	You can prevent a product to be exported by setting the "exportable"
+	You can prevent a category or aproduct to be exported by setting the "exportable"
 	field to False on a product (set on True by default).
 
         http://img67.imageshack.us/img67/3578/openerpscreenshot004qe1.png
