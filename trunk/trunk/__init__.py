@@ -1,2 +1,0 @@
-import magento
-import wizard
