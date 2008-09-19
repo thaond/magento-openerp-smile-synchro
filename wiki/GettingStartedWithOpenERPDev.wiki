@@ -1,4 +1,4 @@
-#OpenERP will soon make SAP cry (take a look to the coming 5th release if you don't believe me), all right; but hell how to I get started to the all that Python stuff; WTF why didn't they used JRuby on Rails instead; So how do I adapt the ERP side to my specific needs?
+#OpenERP will soon make SAP cry (take a look to the coming 5th release if you don't believe me), all right; 
 
 = Python how to =
 Anybody with say 2 years of experience in any object oriented language like Java, PHP5 or C++ is able to catch up with the minimum required level of Python programming in one to two weeks. Beginners can even start on Python although they will need more time.
