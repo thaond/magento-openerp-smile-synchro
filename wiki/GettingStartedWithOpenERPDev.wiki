@@ -41,7 +41,7 @@ Finally Python and OpenObject are by far good enough for OpenERP to be the best 
 
 = Python howto =
 So now that you are all the more convinced OpenERP made very reasonable choices, you'll eventually need to learn Python a bit. Don't panic that's very easy.
-You'll need to read an practice the tutorials here:
+You'll need to read an practice the following tutorials during say a week if starting from scratch:
 http://www.diveintopython.org/toc/index.html
 Not all Python knowledge is required to understand 90% of OpenERP code.
 Just focus on chapter 1 to 5 included. Chapter 6 might occasionally be useful if you need to deal with files.
@@ -53,7 +53,7 @@ http://openerp.com/demonstration.html
 (also the flash based demos)
 http://www.openobject.com/index.php?option=com_content&task=view&id=30&Itemid=72
 
-Now dive into the OpenObject framework:
+Now dive into the OpenObject framework, again practicing during roughly a week:
 Old bu still 99% valid and simple tutorial: http://openerp.com/wiki/index.php/Developers:MinutesCustom/HomePage
 full doc:
 http://openerp.com/wiki/index.php/Developers:Developper%27s_Book
