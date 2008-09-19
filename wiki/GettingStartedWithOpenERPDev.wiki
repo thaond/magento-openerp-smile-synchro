@@ -23,20 +23,21 @@ So Finally, a dynamic language such as Python is a very good choice for an ERP. 
 Well, first you might know that Python and Ruby are really close, almost as close as C# and Java. No question Rails is an outstanding framework. But building a full blown ERP is not an easy task, building a business mature ERP won't take less than 3 years. This is not only about getting the technical platform right (while that's a minimal condition and I predict resounding failures of leading brands because they didn't really passed that first stage), this is also about getting all the functional right, and since the functional stuff is too large for a unique open source team, this is even about getting a true (unlike some hyped oss products around) community catalysis right. OpenERP achieved all that, no too shabby.
 
 Second, if you take a look to the underlining OpenObject framework, you'll see lots of things that are similar to Rails, here are a few ones:
-* the ORM is dynamic ActiveRecord pattern, with similar extra features like single and multiple table inheritance and associations.
-* ORM with two cache levels since OpenERP 5. Almost as good as Java Hibernate, but much easier and versatile...
-* the code is very DRY all the way. Not a single duplicated line.
-* MVC architecture.
-* Stateless design. Rails wins here because it's also fully HTTP REST compliant why OpenERP doens't benefit yet the idempotence of most of HTTP methods and use HTTP POST instead to tunnel its XML/RPC, while also supporting the fast NetRPC protocol (similar to Java RMI) or HTTP via eTiny, more specifically a thin Turbogears/CherryPy layer), but that's not as RESTful as Rails yet.
-* fixtures with several formats (CSV, XML, no Yaml yet) with fixture relative ids like in Rails 2.x which make loading demo or config data a piece of cake unlike with other ERP's.
-* no HQL or yet an other scripting SQL language wrapper like Hibernate, but, just like the Rails ActiveRecord philosophy a simple CRUD ORM API + an easy way to fire custom pure SQL request whenever it's required.
-* built'in unit test infrastructure. Not as good as Rspec, but hundred times better than what other ERP's offer.
-* Unlike Rails, OpenER views are a pure XML simple widget components oriented dialect with no interpreted code inside. That's because an ERP doesn't claim to be as flexible as a shiny web2.0 HTML page but rather focus on productivity inside the ERP interface paradigm. Still, the eTiny extra layer can offer that flexibility if you really want too.
+  * the ORM is dynamic ActiveRecord pattern, with similar extra features like single and multiple table inheritance and associations.
+  * ORM with two cache levels since OpenERP 5. Almost as good as Java Hibernate, but much easier and versatile...
+  * the code is very DRY all the way. Not a single duplicated line.
+  * MVC architecture.
+  * Stateless design. Rails wins here because it's also fully HTTP REST compliant why OpenERP doens't benefit yet the idempotence of most of HTTP methods and use HTTP POST instead to tunnel its XML/RPC, while also supporting the fast NetRPC protocol (similar to Java RMI) or HTTP via eTiny, more specifically a thin Turbogears/CherryPy layer), but that's not as RESTful as Rails yet.
+  * fixtures with several formats (CSV, XML, no Yaml yet) with fixture relative ids like in Rails 2.x which make loading demo or config data a piece of cake unlike with other ERP's.
+  * no HQL or yet an other scripting SQL language wrapper like Hibernate, but, just like the Rails ActiveRecord philosophy a simple CRUD ORM API + an easy way to fire custom pure SQL request whenever it's required.
+  * built'in unit test infrastructure. Not as good as Rspec, but hundred times better than what other ERP's offer.
+  * Unlike Rails, OpenER views are a pure XML simple widget components oriented dialect with no interpreted code inside. That's because an ERP doesn't claim to be as flexible as a shiny web2.0 HTML page but rather focus on productivity inside the ERP interface paradigm. Still, the eTiny extra layer can offer that flexibility if you really want too.
 
 So finally, yes, I'm convinced Rails would have been better. But let's face it:
-#  Rails was not available yet when OpenERP has been built
-#  Rails would boost ERP productivity by say 10% only. But running 10% faster while starting 5 years late would make absolutely no difference at the end; this is really not like running 5 times faster than the Java language and starting almost at the same time. So I believe 10% this is not enough to make the difference considering all the other involved factors like functional perimeter, quality of the governance, community momentum...
-# Finally Python and OpenObject are by far good enough for OpenERP to be the best ERP around, and I would bet quite heavily that no product will ever pass it in the coming next 5 years at least, this is very much written already.
+  #  Rails was not available yet when OpenERP has been built.
+  #  Rails would boost ERP productivity by say 10% only. But running 10% faster while starting 5 years late would make absolutely no difference at the end; this is really not like running 5 times faster than the Java language and starting almost at the same time. So I believe 10% this is not enough to make the difference considering all the other involved factors like functional perimeter, quality of the governance, community momentum...
+
+Finally Python and OpenObject are by far good enough for OpenERP to be the best ERP around, and I would bet quite heavily that no product will ever pass it in the coming next 5 years at least, this is very much written already.
 
 = Python howto =
 So now that you are all the more convinced OpenERP made very reasonable choices, you'll eventually need to learn Python a bit. Don't panic that's very easy.
