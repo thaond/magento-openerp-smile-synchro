@@ -12,9 +12,9 @@ Finally, this would be quite off-topic, but I think the key why Python or any go
 Indeed, in a static language, the OOP model, mapped to the database structure is supposed to be mostly fixed at compilation time. Gaining runtime flexibility like with the application dictionary of Compiere or Openbravo means too often losing some OOP power like inheritability or encapsulation. Oh yes that would still be possible, but that would mean over-engineering an ERP platform just like OSGI or the Eclipse RCP. Ultimately, you'll find guys able to do that. But will they do it as open source and will they master also the functional part of an ERP? Quite unlikely. So choosing a static language as the main language for an ERP results either in non functional/non mature boiler plate code, either functional code that is really to badly designed to fit any different context without a ton of non maintainable coding. So a dynamic OOP language is the good choice, at least for the business layer of an ERP.
 
 Also, for those fearing runtime errors in OpenERP because it uses a dynamic language, I would say that in OpenERP:
-*  there is roughly 5 times less code than is an equivalent Java language based code, or even 10 times less code than a procedural ERP like SAP, Openbravo or Compiere. So that's much less code to watch for the same features. Also bare in mind that PLSQL, HSQL, JSP, XML IOC like Spring and all those usual techs won't provide you more static security either: they are dynamic stuff too even if they are bad at OOP.
-*  OpenERP comes with a bunch of unit and functional testing testing.
-*  The compiler might do less work, there is a huge community testing the software, that's valid too.
+  *  there is roughly 5 times less code than is an equivalent Java language based code, or even 10 times less code than a procedural ERP like SAP, Openbravo or Compiere. So that's much less code to watch for the same features. Also bare in mind that PLSQL, HSQL, JSP, XML IOC like Spring and all those usual techs won't provide you more static security either: they are dynamic stuff too even if they are bad at OOP.
+  *  OpenERP comes with a bunch of unit and functional testing testing.
+  *  The compiler might do less work, there is a huge community testing the software, that's valid too.
 
 So Finally, a dynamic language such as Python is a very good choice for an ERP. The runtime errors that might occur will always be discovered and fixed at implementation time, so they will not be a trouble at runtime.
 
