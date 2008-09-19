@@ -40,18 +40,24 @@ So finally, yes, I'm convinced Rails would have been better. But let's face it:
 
 = Python howto =
 So now that you are all the more convinced OpenERP made very reasonable choices, you'll eventually need to learn Python a bit. Don't panic that's very easy.
+You'll need to read an practice the tutorials here:
+http://www.diveintopython.org/toc/index.html
+Not all Python knowledge is required to understand 90% of OpenERP code.
+Just focus on chapter 1 to 5 included. Chapter 6 might occasionally be useful if you need to deal with files.
 
 
 = OpenERP how to =
+First, look at the demos:
+http://openerp.com/demonstration.html
+(also the flash based demos)
+http://www.openobject.com/index.php?option=com_content&task=view&id=30&Itemid=72
+
+Now dive into the OpenObject framework:
+Old bu still 99% valid and simple tutorial: http://openerp.com/wiki/index.php/Developers:MinutesCustom/HomePage
+full doc:
+http://openerp.com/wiki/index.php/Developers:Developper%27s_Book
 
 = IDE howto =
+Install Eclipse and the PyDev plugin, you'll thus avoid indentation errors, have a great editor with advances code navigation and debugging. Having OpenERP running inside PyDev is almost automatic on Linux but is way harder in Windows due to the use of native library you'll need to have properly installed. Depending on you, you might even win time running a Linux VM inside Windows in such a case, but again, that's up to you.
 
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+Good luck.
