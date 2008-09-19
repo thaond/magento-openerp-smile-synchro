@@ -1,0 +1,30 @@
+#OpenERP will soon make SAP cry (take a look to the coming 5th release if you don't believe me), all right. But hell how to I get started to the all that Python stuff. WTF why didn't they used JRuby on Rails instead? So how do I adapt the ERP side to my specific needs?
+
+= Python how to =
+Anybody with say 2 years of experience in any object oriented language like Java, PHP5 or C++ is able to catch up with the minimum required level of Python programming in one to two weeks. Beginners can even start on Python although they will need more time.
+
+But bare in mind that despite not being that popular Python is one of the simplest OOP language around, probably because Python states "there should be only one way to to things". Python is also a good compromise with a first class OOP abstraction but is still almost an order of magnitude faster than PHP (while still being an order of magnitude slower than Java or C++; there is no free lunch). Of course, those are only algorithmic considerations. Better productivity leading to architectural or database optimizations always make a much higher difference.
+
+Also, believe my deep comparison, OpenERP require somewhat 10 times less code than Java ERP's around like Compiere or Openbravo to do the same functional stuff (let's call those two Java based even if they are actually more like PSQL/procedural coding oriented, at least for their business code layer, which unfortunately is the one that matters) Needless to say OpenERP actually does much more instead. Just investigate data migration, cost of customization, versatility, fixtures loading, project management, CRM, complex stock management...
+
+== Why the hell didn't they used Rails? ==
+Well, first you might know that Python and Ruby are really close, almost as close as C# and Java. No question Rails is an outstanding framework. But building an ERP is not an easy task, building a business mature ERP won't take less than 3 years. This is not only about getting the technical platform right (while that's a minimal condition I predict resounding failures of leading names because they didn't really passed that first stage), this is also about getting all the functional right, and since the functional stuff is too large for a unique open source team, this is even about getting a true (unlike some hyped oss products around) community catalysis right. OpenERP achieved all that, no too shabby.
+
+Second, if you take a look to the underlining Openobject framework, you'll see lots of things that are similar to Rails, here are a few ones:
+*  
+
+So now that you are all the 
+
+= OpenERP how to =
+
+= IDE howto =
+
+Add your content here.
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
