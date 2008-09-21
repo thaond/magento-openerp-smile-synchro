@@ -1,4 +1,6 @@
-#summary OpenERP will soon make SAP cry - take a look to the coming 5th release if you don't believe me. All right, but hell how do I get started to the all that Python stuff. WTF? Why didn't they used JRuby on Rails instead; So how do I adapt the ERP side to my specific needs?
+#summary You might be coming to OpenERP from Magento, so you might wonder why OpenERP, wh Python and how to develop with it.
+
+OpenERP will soon make SAP cry - take a look to the coming 5th release if you don't believe me. All right, but hell how do I get started to the all that Python stuff. WTF? Why didn't they used JRuby on Rails instead; So how do I adapt the ERP side to my specific needs?
 
 = Python and OpenERP - why =
 Anybody with say 2 years of experience in any object oriented language like Java, PHP5 or C++ is able to catch up with the minimum required level of Python programming for OpenERP in one to two weeks. Beginners can even start on Python although they will need more time.
