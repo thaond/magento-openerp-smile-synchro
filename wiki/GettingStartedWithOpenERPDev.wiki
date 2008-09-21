@@ -22,7 +22,7 @@ So Finally, a dynamic language such as Python is a very good choice for an ERP. 
 = Why the hell didn't they used Rails instead? =
 Well, first you might know that Python and Ruby are really close, almost as close as C# and Java. No question Rails is an outstanding framework. But building a full blown ERP is not an easy task, building a business mature ERP won't take less than 3 years. This is not only about getting the technical platform right (while that's a minimal condition and I predict resounding failures of leading brands because they didn't really passed that first stage), this is also about getting all the functional right, and since the functional stuff is too large for a unique open source team, this is even about getting a true (unlike some hyped oss products around) community catalysis right. OpenERP achieved all that, no too shabby.
 
-Second, if you take a look to the underlining OpenObject framework, you'll see lots of things that are similar to Rails, here are a few ones:
+Second, if you take a look to the underlining [http://openobject.com/ OpenObject framework], you'll see lots of things that are similar to Rails, here are a few ones:
   * the ORM is dynamic ActiveRecord pattern, with similar extra features like single and multiple table inheritance and associations.
   * ORM with two cache levels since OpenERP 5. Almost as good as Java Hibernate, but much easier and versatile...
   * the code is very DRY all the way. Not a single duplicated line.
