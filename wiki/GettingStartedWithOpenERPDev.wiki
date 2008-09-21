@@ -29,9 +29,9 @@ Second, if you take a look to the underlining [http://openobject.com/ OpenObject
   * MVC architecture.
   * Stateless design. Rails wins here because it's also fully HTTP REST compliant why OpenERP doens't benefit yet the idempotence of most of HTTP methods and use HTTP POST instead to tunnel its XML/RPC, while also supporting the fast NetRPC protocol (similar to Java RMI) or HTTP via eTiny, more specifically a thin Turbogears/CherryPy layer), but that's not as RESTful as Rails yet.
   * fixtures with several formats (CSV, XML, no Yaml yet) with fixture relative ids like in Rails 2.x which make loading demo or config data a piece of cake unlike with other ERP's.
-  * no HQL or yet an other scripting SQL language wrapper like Hibernate, but, just like the Rails ActiveRecord philosophy a simple CRUD ORM API + an easy way to fire custom pure SQL request whenever it's required.
+  * no HQL or yet an other scripting SQL language wrapper like Hibernate, but, just like the Rails [http://ar.rubyonrails.org/ ActiveRecord] philosophy a simple CRUD ORM API + an easy way to fire custom pure SQL request whenever it's required.
   * built'in unit test infrastructure. Not as good as Rspec, but hundred times better than what other ERP's offer.
-  * Unlike Rails, OpenER views are a pure XML simple widget components oriented dialect with no interpreted code inside. That's because an ERP doesn't claim to be as flexible as a shiny web2.0 HTML page but rather focus on productivity inside the ERP interface paradigm. Still, the eTiny extra layer can offer that flexibility if you really want too.
+  * Unlike Rails, [http://openerp.com/wiki/index.php/Developers:Developper%27s_Book/The_views OpenERP views] are a pure XML simple widget components oriented dialect with no interpreted code inside. That's because an ERP doesn't claim to be as flexible as a shiny web2.0 HTML page but rather focus on productivity inside the ERP interface paradigm. Still, the eTiny extra layer can offer that flexibility if you really want too.
 
 So finally, yes, I'm convinced Rails would have been better. But let's face it:
   #  Rails was not available yet when OpenERP has been built.
@@ -47,14 +47,14 @@ Not all Python knowledge is required to understand 90% of OpenERP code.
 Just focus on chapter 1 to 5 included. Chapter 6 might occasionally be useful if you need to deal with files.
 
 
-= OpenERP how to =
+= OpenERP howto =
 First, look at the demos:
 http://openerp.com/demonstration.html
 (also the flash based demos)
 http://www.openobject.com/index.php?option=com_content&task=view&id=30&Itemid=72
 
 Now dive into the OpenObject framework, again practicing during roughly a week:
-Old bu still 99% valid and simple tutorial: http://openerp.com/wiki/index.php/Developers:MinutesCustom/HomePage
+Old but still 99% valid and simple tutorial: http://openerp.com/wiki/index.php/Developers:MinutesCustom/HomePage
 full doc:
 http://openerp.com/wiki/index.php/Developers:Developper%27s_Book
 
