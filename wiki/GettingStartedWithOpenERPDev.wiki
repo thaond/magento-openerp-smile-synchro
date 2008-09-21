@@ -61,4 +61,7 @@ http://openerp.com/wiki/index.php/Developers:Developper%27s_Book
 = IDE howto =
 Install Eclipse and the [http://pydev.sourceforge.net/ PyDev plugin], you'll thus avoid indentation errors, have a great editor with advances code navigation and debugging. Having OpenERP running inside PyDev is almost automatic on Linux but is way harder in Windows due to the use of native library you'll need to have properly installed. Depending on you, you might even win time running a Linux VM inside Windows in such a case, but again, that's up to you.
 
+Here is an example debugging OpenERP with Eclipse and PyDev:
+http://magento-openerp-smile-synchro.googlecode.com/svn/wiki/openerp_debug.png
+
 Good luck.
