@@ -1,4 +1,4 @@
-#You might be coming from Magento and you might wondering why we choosed OpenERP and how to learn it.
+#you might be coming from Magento and you might wondering why we choosed OpenERP and how to learn it.
 
 OpenERP will soon make SAP cry - take a look to the coming 5th release if you don't believe me. All right, but hell how do I get started to the all that Python stuff. WTF? Why didn't they used JRuby on Rails instead; So how do I adapt the ERP side to my specific needs?
 
