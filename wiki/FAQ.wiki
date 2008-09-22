@@ -10,6 +10,9 @@ http://localhost/magento/app/code/community/Smile_OpenERP_Synchro/openerp-synchr
 
 Ensure your get a welcome message with no error before the message (due to some bad interaction with Magento when testing that URL from the browser, you might need to clear your cookies before trying again).
 
+*If you get a 404 not found error* then it might be an installation bug we are still investigating, see: http://code.google.com/p/magento-openerp-smile-synchro/issues/detail?id=11
+In this case, the work around is to copy the Smile_OpenERP_Synchro manuall from magento/local to magento/community. Make sure it passes the test then. We are working on that issue.
+
 = OpenERP error log while synchronizing =
 if you get an error like {{{junk after document element}}}
 
