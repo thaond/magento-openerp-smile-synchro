@@ -44,9 +44,8 @@ The connector has only been successfully tested with taxes applied AFTER discoun
 It looks like e-accelerator doesn't work with the Zend php docBlock based reflection system. On the contrary, the apc (easier to configure and just as fast) accelerator looks all right. When using e-accelerator, you might have issues with the XML/RPC signatures.
 
 
-= Why not use the built'in Magento webservices? =
-We could use the native web services to update and create products and it would be nice to re-factor that part of the connector to achieve it. Still, to import the sale orders back to OpenERPn, we couldn't rely on the native web services as they don't include the sale order lines in the sale order data for instance.
-Still, it would be better to re-factor the connector to at least declare our web-services the Magento way so that we would at least benefit from the Magento ACl based security.
+= Why not use only the built'in Magento webservices? =
+We add trouble doing that to retrive the sale orders and their sale order lines. Still, we now believe this could also be done using only the Magento native webservices API, so we should probably refactor our code to achieve that, see that RFE: http://code.google.com/p/magento-openerp-smile-synchro/issues/detail?id=6
 
 = Security =
 *The connector web services are currently exposed in an unprotected manner to the world.* This is very important you prevent anyone from connecting to the webservice page ( http://localhost/magento/app/code/community/Smile_OpenERP_Synchro/openerp-synchro.php ) by tunning your server (probably Apache). Ideally only the OpenERP server could connect to that page (same as the test page). Using Magento ACL based webservices would improve that situation a lot. Please don't hesitate to contribute such an improvement.
