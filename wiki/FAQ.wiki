@@ -45,7 +45,7 @@ It looks like e-accelerator doesn't work with the Zend php docBlock based reflec
 
 
 = Why not use only the built'in Magento webservices? =
-We add trouble doing that to retrive the sale orders and their sale order lines. Still, we now believe this could also be done using only the Magento native webservices API, so we should probably refactor our code to achieve that, see that RFE: http://code.google.com/p/magento-openerp-smile-synchro/issues/detail?id=6
+We had trouble doing that to retrieve the sale orders and their sale order lines properly. Still, we now believe this could also be done using only the Magento native webservices API, so we should probably refactor our code to achieve that, see that RFE: http://code.google.com/p/magento-openerp-smile-synchro/issues/detail?id=6
 
 = Security =
 *The connector web services are currently exposed in an unprotected manner to the world.* This is very important you prevent anyone from connecting to the webservice page ( http://localhost/magento/app/code/community/Smile_OpenERP_Synchro/openerp-synchro.php ) by tunning your server (probably Apache). Ideally only the OpenERP server could connect to that page (same as the test page). Using Magento ACL based webservices would improve that situation a lot. Please don't hesitate to contribute such an improvement.
