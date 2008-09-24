@@ -112,4 +112,16 @@ class magento_web(osv.osv):
         (_constraint_unique, 'Error: The module has been designed for only one Magento Web.', [])
     ]
 
+    # for lack of a better place to put this    
+    def createOrders(self, cr, uid, sale_order_array):
+        import netsvc
+        import magento_utils
+        logger = netsvc.Logger()
+        logger.notifyChannel("Magento Import", netsvc.LOG_INFO, "createOrder")	
+
+        utils = magento_utils.magento_utils()
+        results = utils.createOrders(cr, uid, sale_order_array)
+
+        return results
+
 magento_web()
