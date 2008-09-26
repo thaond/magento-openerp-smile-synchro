@@ -64,11 +64,14 @@ and Magento Back office.
 	
 	/!\ Warning
 	In Magento > System > Configuration > Sales  > Tax > Calculation
+        Or since Magento 1.1.4 System > Configuration > Sales > Tax > Calculation 
 	you must set :
 	
         _Catalog prices include tax_, to *No*
 
 	_Apply Tax after Discount_, to *Yes*
+
+      
 
        http://img80.imageshack.us/img80/5977/openerpscreenshot001yu2.png
 
