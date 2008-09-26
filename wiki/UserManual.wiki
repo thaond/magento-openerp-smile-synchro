@@ -15,7 +15,7 @@ To get started you need to install both :
 = Initial Configuration =
 -------------
 
-http://img219.imageshack.us/my.php?image=openerpscreenshot001nq1.png
+http://img221.imageshack.us/img221/9238/openerpscreenshot001rm2.png
 _magento interface_
 
 You need to configure the website, shop, category, and tax class in OpenERP Client
@@ -25,9 +25,9 @@ and Magento Back office.
 
 	On OpenERP, you need to configure a website Name & Url, the
 	magento_id must be set to one.
-	The URL must point a the base of your Magento website; usually this means http://localhost/magento/ unlike the screenshot (we will change that soon). The trailing slash is currently mandatory.
+	The URL must point a the base of your Magento website; usually this means http://localhost/magento/ . The trailing slash is currently mandatory.
 
-	http://img140.imageshack.us/my.php?image=openerpscreenshot002zb7.png
+        http://img221.imageshack.us/img221/282/openerpscreenshot003et5.png
 
         Since 0.9.7
         You now have to configure API username and password
