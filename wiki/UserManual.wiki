@@ -15,7 +15,7 @@ To get started you need to install both :
 = Initial Configuration =
 -------------
 
-http://img68.imageshack.us/img68/6877/openerpscreenshot001ko9.png
+http://img219.imageshack.us/my.php?image=openerpscreenshot001nq1.png
 _magento interface_
 
 You need to configure the website, shop, category, and tax class in OpenERP Client
@@ -27,7 +27,7 @@ and Magento Back office.
 	magento_id must be set to one.
 	The URL must point a the base of your Magento website; usually this means http://localhost/magento/ unlike the screenshot (we will change that soon). The trailing slash is currently mandatory.
 
-	http://img140.imageshack.us/img140/6471/openerpscreenshot002uk4.jpg
+	http://img140.imageshack.us/my.php?image=openerpscreenshot002zb7.png
 
         Since 0.9.7
         You now have to configure API username and password
@@ -93,10 +93,18 @@ and Magento Back office.
 	The "Categories" and "Product" wizards will import or/and update the
 	categories and products of your OpenERP catalog to Magento Catalog.
 
-	You can prevent a category or aproduct to be exported by setting the "exportable"
+	You can prevent a category or a product to be exported by setting the "exportable"
 	field to False on a product (set on True by default).
 
         http://img67.imageshack.us/img67/3578/openerpscreenshot004qe1.png
+        
+        Added synchronize per item on products and categories.
+	You can now synchronize :
+		- On the main menu, all you items
+		- On a tree view, the selected items
+		- On a form view, the current item
+	Also, when you save an item, it is automatically updated on Magento
+
 
 =Sale orders synchronization=
 ---------------------------
