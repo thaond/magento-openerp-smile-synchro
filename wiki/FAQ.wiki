@@ -6,7 +6,7 @@ If you get an error in the Magento download manager, may be you should try to op
 
 = Testing the Magento extension =
 You can ensure that your Magento extension is properly installed by browsing the following URL with your favorite browser:
-http://localhost/magento/app/code/community/Smile_OpenERP_Synchro/openerp-synchro.php
+http://localhost/magento/app/code/local/Smile_OpenERP_Synchro/openerp-synchro.php
 
 Ensure your get a welcome message with no error before the message (due to some bad interaction with Magento when testing that URL from the browser, you might need to clear your cookies before trying again).
 
