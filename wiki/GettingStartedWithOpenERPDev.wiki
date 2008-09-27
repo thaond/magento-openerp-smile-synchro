@@ -27,7 +27,7 @@ Second, if you take a look to the underlining [http://openobject.com/ OpenObject
   * ORM with two cache levels since OpenERP 5. Almost as good as Java Hibernate, but much easier and versatile...
   * the code is very DRY all the way. Not a single duplicated line.
   * MVC architecture.
-  * Stateless design. Rails wins here because it's also fully HTTP REST compliant why OpenERP doens't benefit yet the idempotence of most of HTTP methods and use HTTP POST instead to tunnel its XML/RPC, while also supporting the fast NetRPC protocol (similar to Java RMI) or HTTP via eTiny, more specifically a thin Turbogears/CherryPy layer), but that's not as RESTful as Rails yet.
+  * Stateless design. Rails wins here because it's also fully HTTP REST compliant while OpenERP doens't benefit yet the idempotence of most of HTTP methods and use HTTP POST instead to tunnel its XML/RPC, while also supporting the fast NetRPC protocol (similar to Java RMI) or HTTP via eTiny, more specifically a thin Turbogears/CherryPy layer), but that's not as RESTful as Rails yet.
   * fixtures with several formats (CSV, XML, no Yaml yet) with fixture relative ids like in Rails 2.x which make loading demo or config data a piece of cake unlike with other ERP's.
   * no HQL or yet an other scripting SQL language wrapper like Hibernate, but, just like the Rails [http://ar.rubyonrails.org/ ActiveRecord] philosophy a simple CRUD ORM API + an easy way to fire custom pure SQL request whenever it's required.
   * built'in unit test infrastructure. Not as good as Rspec, but hundred times better than what other ERP's offer.
