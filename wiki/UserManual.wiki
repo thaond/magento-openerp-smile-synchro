@@ -64,7 +64,7 @@ and Magento Back office.
 	
 	/!\ Warning
 	In Magento > System > Configuration > Sales  > Tax > Calculation
-        Or since Magento 1.1.4 System > Configuration > Sales > Tax > Calculation 
+        Or prior to Magento 1.1.4  Magento > Configuration > Sales > Sales > Tax Calculation
 	you must set :
 	
         _Catalog prices include tax_, to *No*
