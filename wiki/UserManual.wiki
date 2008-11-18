@@ -6,7 +6,12 @@
 
 To get started you need to install both :
   * The connector module for OpenERP. Use the OpenERP module manager to load the zip file you'll find [http://code.google.com/p/magento-openerp-smile-synchro/downloads/list here]
+
   * The connector extension for Magento you'll install using Magento Connect Utility. The extension key is to be found on [http://www.magentocommerce.com/extension/446/smile-openerp-synchro here in the Magento Connect repository ]. See installation video in flash, in the [http://code.google.com/p/magento-openerp-smile-synchro/downloads/list download section].
+
+/!\ Since v 0.9.9 you have to move the Smile_OpenERPSync.xml file, 
+from magento/app/code/local/Smile/OpenERPSync/etc/modules 
+to magento/app/etc/modules, and refresh your magento cache
 
 (Both plugins are actually bundled in the OpenERP module you can download [http://code.google.com/p/magento-openerp-smile-synchro/downloads/list here]. Both modules are also on [http://code.google.com/p/magento-openerp-smile-synchro/source/checkout SCM here ].
 
@@ -135,3 +140,19 @@ and Magento Back office.
 http://img66.imageshack.us/img66/9176/openerpscreenshot005nn8.png
 
 http://img227.imageshack.us/img227/3866/openerpscreenshot006vc9.png
+
+=Sale orders push=
+----------------------
+
+From Charles Galpin branch :
+You can now enable sale order push from Magento, sales will be pushed in OpenERP
+when created.
+
+You have to configure on Magento System>Configuration>Sales>OpenERP Sync
+
+-> set to Enable
+-> set the URL to your openerp server, the database name, and ident for a user
+with enough rights.
+
+http://img227.imageshack.us/my.php?image=openerpscreenshot004ha0.png
+
