@@ -35,8 +35,8 @@ and Magento Back office.
         http://img221.imageshack.us/img221/282/openerpscreenshot003et5.png
 
         Since 0.9.7
-        You now have to configure API username and password
-        That you have to create on Magento backoffice
+        You now have to configure API username and password you have to create on Magento backoffice through System > Webservices > Users and Roles (create a roles with enough right, eventually all, and create a user affected to that role). Otherwise you could just get a "Invalid api path" error message in your OpenERP server logs while synchronizing.
+TODO: screenshot.
 
 == _-Shop_ ==
 
@@ -155,4 +155,3 @@ You have to configure on Magento System>Configuration>Sales>OpenERP Sync
 with enough rights.
 
 http://img227.imageshack.us/my.php?image=openerpscreenshot004ha0.png
-
