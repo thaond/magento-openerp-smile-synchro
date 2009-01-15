@@ -155,3 +155,10 @@ You have to configure on Magento System>Configuration>Sales>OpenERP Sync
 with enough rights.
 
 http://img227.imageshack.us/my.php?image=openerpscreenshot004ha0.png
+
+=Overall demo=
+--------------
+
+(click on fullscreen view)
+
+<wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/118008740609451236976/helloworld.xml" border="0" width="430" height="350">
