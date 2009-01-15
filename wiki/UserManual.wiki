@@ -38,7 +38,7 @@ and Magento Back office.
         You now have to configure API username and password you have to create on Magento backoffice through System > Webservices > Users and Roles (create a roles with enough right, eventually all, and create a user affected to that role). Otherwise you could just get a "Invalid api path" error message in your OpenERP server logs while synchronizing.
 see the following screencast:
 
-<wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/118008740609451236976/openerp1.xml" border="0" width="430" height="350">
+<wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/118008740609451236976/openerp1.xml" border="0" width="430" height="350"/>
 
 
 
