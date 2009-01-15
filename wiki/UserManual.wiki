@@ -49,6 +49,10 @@ see the following screencast:
 
 	http://img66.imageshack.us/img66/9836/openerpscreenshot002xv4.png
 
+see following screencast:
+<wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/118008740609451236976/openerp2.xml" border="0" width="430" height="350"/>
+
+
 == _-Category_ ==
 
 	Categories are now automatically exported !
@@ -165,4 +169,4 @@ http://img227.imageshack.us/my.php?image=openerpscreenshot004ha0.png
 
 (click on fullscreen view)
 
-<wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/118008740609451236976/helloworld.xml" border="0" width="430" height="350">
+<wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/118008740609451236976/helloworld.xml" border="0" width="430" height="350"/>
