@@ -56,7 +56,7 @@ http://www.openobject.com/index.php?option=com_content&task=view&id=30&Itemid=72
 Now dive into the OpenObject framework, again practicing during roughly a week:
 Old but still 99% valid and simple tutorial: http://openerp.com/wiki/index.php/Developers:MinutesCustom/HomePage
 full doc:
-http://openerp.com/wiki/index.php/Developers:Developper%27s_Book
+http://doc.openerp.com/developer/index.html#book-develop-link
 
 = IDE howto =
 Install Eclipse and the [http://pydev.sourceforge.net/ PyDev plugin], you'll thus avoid indentation errors, have a great editor with advances code navigation and debugging. Having OpenERP running inside PyDev is almost automatic on Linux but is way harder in Windows due to the use of native library you'll need to have properly installed. Depending on you, you might even win time running a Linux VM inside Windows in such a case, but again, that's up to you.
