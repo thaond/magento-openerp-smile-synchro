@@ -1,5 +1,4 @@
 <wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/118008740609451236976/helloworld.xml" border="0" width="430" height="350">
 
 
-<wiki:gadget url="http://code.google.com/gadgets/FeedGadget/gadget.xml&up_showaddbutton=true&up_random=true&up_defer=true&up_gadgetTitle=__MSG_blogs__&up_feeds=OpenSocial%20Blog:http://opensocialapis.blogspot.com/atom.xml" border="0" width="800" height="500">
-
+<wiki:gadget url="http://code.google.com/gadgets/FeedGadget/gadget.xml?up_showaddbutton=true&up_random=true&up_defer=true&up_gadgetTitle=__MSG_blogs__&up_feeds=OpenSocial%20Blog:http://opensocialapis.blogspot.com/atom.xml" border="0" width="800" height="500">
