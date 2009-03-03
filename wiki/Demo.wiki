@@ -1,4 +1,4 @@
 <wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/118008740609451236976/helloworld.xml" border="0" width="430" height="350">
 
 
-<wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/118008740609451236976/magento-openerp-synchro.xml" border="0" width="1200" height="350" >
+<wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/118008740609451236976/magento-openerp-synchro.xml" border="0" width="1200" height="500" >
