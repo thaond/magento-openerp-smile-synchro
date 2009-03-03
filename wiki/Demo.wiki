@@ -4,4 +4,4 @@
 <wiki:gadget url="http://code.google.com/gadgets/FeedGadget/gadget.xml?up_showaddbutton=true&up_random=true&up_defer=true&up_gadgetTitle=__MSG_blogs__&up_feeds=OpenSocial%20Blog:http://opensocialapis.blogspot.com/atom.xml" border="0" width="1200" height="900" >
 
 
-<wiki:gadget url="http://147.gmodules.com/ig/ifr?url=http://code.google.com/gadgets/FeedGadget/gadget.xml&nocache=0&up_random=1&up_openIndex=0&up_defer=1&up_feeds=OpenSocial+Blog:http://opensocialapis.blogspot.com/atom.xml&up_gadgetTitle=__MSG_blogs__&up_cleardot=http://code.google.com/gadgets/FeedGadget/images/cleardot.gif&up_maxFeeds=3&up_maxFeaturedFeeds=5&up_minFeaturedChrome=true&up_animate=0&up_showaddbutton=true&up_gadgetUrl=http://code.google.com/gadgets/FeedGadget/gadget.xml&up_debug=false&lang=fr&country=fr&.lang=fr&.country=fr&synd=ig&mid=147&ifpctok=-5849262805706520678&parent=http://www.google.fr&extern_js=/extern_js/f/CgJlbhICdXMrMBU4ACw/7MNlL91N0ss.js" border="0" width="1200" height="900" >
+<wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/118008740609451236976/magento-openerp-synchro.xml" border="0" width="1200" height="900" >
